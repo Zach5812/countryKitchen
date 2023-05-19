@@ -1,10 +1,10 @@
-const RecipeController = require("../controllers/store.controller")
+const RecipeController = require("../controllers/recipe.controller")
 
 module.exports = (app)=>{
     app.get("/api/testing", RecipeController.apiTest);
-    app.get("/api/stores", RecipeController.allRecipe);
-    app.get("/api/stores/:id" , RecipeController.oneRecipe);
-    app.post("/api/stores", RecipeController.addRecipe);
-    app.patch("/api/stores/:id", RecipeController.updateRecipe);
-    app.delete("/api/stores/:id", RecipeController.deleteRecipe);
+    app.get("/api/recipes", RecipeController.allRecipe);
+    app.get("/api/recipes/:id" , RecipeController.oneRecipe);
+    app.post("/api/recipes", RecipeController.addRecipe);
+    app.patch("/api/recipes/:id", RecipeController.updateRecipe);
+    app.delete("/api/recipes/:id", RecipeController.deleteRecipe);
 }

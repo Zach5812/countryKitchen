@@ -1,4 +1,3 @@
-configs:
 const mongoose = require('mongoose');
 const username = process.env.ATLAS_USERNAME;
 const pw = process.env.ATLAS_PASSWORD;
