@@ -54,7 +54,7 @@ html{
 
 #Mat{
   width: 90%;
-  height: 500px;
+  min-height: 500px;
   margin: 30px 0px;
   background-color:aliceblue;
   display:flex;
@@ -82,5 +82,20 @@ html{
   width:125px;
   height:125px;
   background-color:white;
-  
+}
+
+#recipeCat{
+  /* height:800px; */
+  display:flex;
+  align-items:center;
+  justify-content:space-evenly;
+  flex-wrap:wrap;
+  /* background-image: url('/src/images/cuttingboard.png');
+  background-size:contain;
+  background-repeat:no-repeat;
+  background-position: center; */
+}
+
+#RecipeCard{
+  margin:5px;
 }
