@@ -1,4 +1,4 @@
-const RecipeController = require("../controllers/recipe.controller")
+const RecipeController = require("../controllers/recipe.controllers")
 
 module.exports = (app)=>{
     app.get("/api/recipes", RecipeController.allRecipe);

@@ -11,6 +11,8 @@ app.use(express.json() );
 app.use(express.urlencoded({ extended: true }));
 
 // Routes & Controller logic(CRUD)
+const Router = require("./routes/recipes.routes");
+Router(app);
 
 
 // Listen to the Port
