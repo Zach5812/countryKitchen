@@ -1,5 +1,7 @@
 import React from 'react'
 import {Card, Paper} from '@mui/material'
+import CatNav from '../components/CatNav'
+import ListBoard from '../components/ListBoard'
 
 
 const Main = () => {
@@ -7,17 +9,10 @@ const Main = () => {
     <div className="Body">
     <Paper id ="Mat" elevation={4} >
       <Paper id="Menu" elevation={2} square='true' outlined>
-      <div>
-      <h1>Welcome to the Wartsbaugh family kitchen!</h1>
-      <h3>Recipes from generations of home bakers</h3>
-      </div>
-      <div id="navbar">
-        <Card id="navOption">Cookies</Card>
-        <Card id="navOption">Cakes</Card>
-        <Card id="navOption">Pies</Card>
-        <Card id="navOption">Quick-breads</Card>
+        <CatNav/>
+        <ListBoard/>
 
-      </div>
+
       </Paper>
     </Paper>
     </div>
