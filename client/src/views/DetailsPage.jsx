@@ -40,12 +40,6 @@ const DetailsPage = () => {
                     {recipe.story}
                 </p>
 <br />
-                <p>
-                    <h3>Comments</h3>
-                    {recipe.comments.map((eachComment, idx) => (
-                        <p key={idx}>{eachComment.name} <br />{eachComment.comm}{eachComment.rating} </p>
-                    ))}
-                </p>
 
             </div> :
             <p>Not available</p>
