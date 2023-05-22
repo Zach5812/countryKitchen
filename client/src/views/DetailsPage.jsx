@@ -16,7 +16,8 @@ const DetailsPage = () => {
     }, [id])
 
     return (
-        <div>{recipe ?
+        <div id="Mat">
+        <div id="Menu">{recipe ?
             <div> <h1>{recipe.title}</h1>
                 <h3>{recipe.description}</h3>
 
@@ -44,6 +45,7 @@ const DetailsPage = () => {
             </div> :
             <p>Not available</p>
         }</div>
+        </div>
     )
 }
 
