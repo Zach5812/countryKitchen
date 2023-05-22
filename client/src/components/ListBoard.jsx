@@ -7,9 +7,9 @@ const ListBoard = (props) => {
 
     return (
         props.recipeList.length===0?
-        <div style={{textAlign:"center", height:"100%"}}>
+        <div id='welcome'>
             <h1>Welcome to the Wartsbaugh family kitchen!</h1>
-            <h3>Recipes from generations of home bakers</h3>
+            <h3><i>Recipes from generations of home bakers</i></h3>
         </div>:
         <div id='recipeCat'>
             {props.recipeList.map((eachRecipe,idx) => (

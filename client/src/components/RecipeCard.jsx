@@ -25,7 +25,7 @@ const RecipeCard = (props) => {
             </Typography>
         </CardContent>
         <CardActions>
-            <Button size="small"><Link to={`/recipes/${props.id}`} style={{textDecoration:"none"}}>See the recipe</Link></Button>
+            <Button size="small"><Link to={`/recipes/${props.recipe._id}`} style={{textDecoration:"none"}}>See the recipe</Link></Button>
         </CardActions>
     </React.Fragment>
             </Card>
