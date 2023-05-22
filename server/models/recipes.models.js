@@ -47,6 +47,10 @@ const RecipeSchema = new mongoose.Schema({
         type: String,
         required: [true, "Recipe category is required"]
     },
+    image: {
+        type: String,
+        required: [false, "Image URL is required"]
+    },
     description: {
         type: String,
         required: [true, "Please include a description"]
