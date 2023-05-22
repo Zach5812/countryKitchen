@@ -68,7 +68,7 @@ html{
   display:flex;
   flex-direction:column;
   justify-content:space-between;
-  background-color:olivedrab
+  background-color:rgb(28, 148, 124)
 }
 
 #navbar{
@@ -79,10 +79,26 @@ html{
   text-align:center;
 }
 
+#navbar img{
+  height:70px;
+  max-width:90%;
+  padding:3px;
+  border-radius:3px;
+  background-color:aliceblue;
+}
+
 #navOption{
   width:125px;
   height:125px;
-  background-color:white;
+  padding-bottom:5px;
+  font-style:oblique;
+  /* font-weight:bold; */
+  background-color:orange;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:space-between;
+  color:aliceblue
 }
 
 #recipeCat{
@@ -99,4 +115,11 @@ html{
 
 #RecipeCard{
   margin:5px;
+  background-color:orange;
+}
+
+#welcome{
+  text-align:center;
+  height:100%;
+  color:aliceblue
 }

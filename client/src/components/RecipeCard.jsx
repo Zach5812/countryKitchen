@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
@@ -19,13 +20,12 @@ const RecipeCard = (props) => {
             </Typography>
 
             <Typography variant="body2">
-            recipe description 
-            {/* {props.recipe.description} */}
+            {props.recipe["description"]}
 
             </Typography>
         </CardContent>
         <CardActions>
-            <Button size="small">Learn More</Button>
+            <Button size="small"><Link to={`/recipes/${props.id}`} style={{textDecoration:"none"}}>See the recipe</Link></Button>
         </CardActions>
     </React.Fragment>
             </Card>
