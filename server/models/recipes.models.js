@@ -22,7 +22,8 @@ const CommentSchema = new mongoose.Schema({
     comm: {
         type: String,
         required: [true, "Must type a comment"],
-        minlength: [1, "Comment must have at least one character"]
+        minlength: [1, "Comment must have at least one character"],
+        maxlength: [500, "Comment must have less than one character"]
     },
     rating: {
         type: Number,
