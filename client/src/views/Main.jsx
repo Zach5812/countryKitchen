@@ -28,15 +28,22 @@ const Main = () => {
     }
   }, [])
 
-  useEffect(()=>{
+  useEffect(() => {
     axios.get('http://localhost:8000/api/recipes')
-        .then(response=>{
-            setRecipeList(response.data)
-        })
-},[])
+      .then(response => {
+        setRecipeList(response.data)
+      })
+  }, [])
 
-  const filterCat = (category) =>{
-    const filteredList=(recipeList.filter((eachRecipe)=>eachRecipe["category"]===category))
+  const filterCat = (category) => {
+    const filteredList = (recipeList.filter((eachRecipe) => eachRecipe["category"] === category))
+    setFilteredList(filteredList)
+    console.log(category)
+    console.log(filteredList)
+  }
+
+  const filterAll = (category) => {
+    const filteredList = (recipeList.filter((eachRecipe) => eachRecipe["category"] !== category))
     setFilteredList(filteredList)
     console.log(category)
     console.log(filteredList)
@@ -45,14 +52,15 @@ const Main = () => {
   return (
     <div className="Body">
       <Paper id="Mat" elevation={4} >
-        <Paper id="Menu" elevation={5} square='true' outlined>
+        <Paper id="Menu" elevation={5} square={true} variation="outlined">
           {loggedUser?.username ?
             <button className="btn btn-danger" onClick={handleClick}>Logout</button>
             : null
           }
-          <CatNav filterCat={filterCat}/>
-          
-          <ListBoard recipeList = {filteredList}/>
+          <CatNav filterCat={filterCat}
+                  filterAll={filterAll} />
+
+          <ListBoard recipeList={filteredList} />
         </Paper>
       </Paper>
     </div>
