@@ -4,17 +4,17 @@ const IngredientSchema = new mongoose.Schema({
     name: {
         type: String,
         required: [true, "Ingredient name is required"],
-        minlength: [2, "Ingredient namea must be at least 3 characters"]
+        minlength: [2, "Ingredient name must be at least 3 characters"]
     },
     amount: {
         type: Number,
         required: [true, "Ingredient name is required"],
-        minlength: [2, "Ingredient namea must be at least 3 characters"]
+        min: [0, "Ingredient amount must be positive"]
     },
     measurement: {
         type: String,
         required: [true, "Measurement is required"],
-        minlength: [2, "Measurement must be at least 3 characters"]
+        minlength: [1, "Measurement must be at least 1 character"]
     }
 }, {timestamps: true})
 
