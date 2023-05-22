@@ -76,6 +76,7 @@ html{
   padding:10px;
   display:flex;
   justify-content: space-evenly;
+  text-align:center;
 }
 
 #navOption{

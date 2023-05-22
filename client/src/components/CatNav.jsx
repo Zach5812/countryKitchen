@@ -1,13 +1,15 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { Card } from '@mui/material'
 
-const CatNav = () => {
+const CatNav = (props) => {
+    const [category,setCategory] = useState("")
+
     return (
         <div id="navbar">
-            <Card id="navOption">Cookies</Card>
-            <Card id="navOption">Cakes</Card>
-            <Card id="navOption">Pies</Card>
-            <Card id="navOption">Quick-breads</Card>
+            <Card id="navOption" value="cookies" onClick={e=>props.filterCat("cookies")}>Cookies and candies</Card>
+            <Card id="navOption" value="cakes" onClick={e=>props.filterCat("cakes")}>Cakes and puddings</Card>
+            <Card id="navOption" value="pies" onClick={e=>props.filterCat("pies")}>Pies and tarts</Card>
+            <Card id="navOption" value="quicks" onClick={e=>props.filterCat("quicks")}>Quick-breads</Card>
 
         </div>
     )
