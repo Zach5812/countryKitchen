@@ -6,26 +6,16 @@ const ListBoard = (props) => {
 
 
     return (
-
-        <div id='recipeCat'>
-            {/* <RecipeCard/>
-            <RecipeCard/>
-            <RecipeCard/>
-            <RecipeCard/>
-            <RecipeCard/>
-            <RecipeCard/> */}
-
-            {props.recipeList.length>0?
-            props.recipeList.map((eachRecipe,idx) => (
-                <RecipeCard key={idx} recipe={eachRecipe}/>
-            )):
-        <div style={{textAlign:"center"}}>
+        props.recipeList.length===0?
+        <div style={{textAlign:"center", height:"100%"}}>
             <h1>Welcome to the Wartsbaugh family kitchen!</h1>
             <h3>Recipes from generations of home bakers</h3>
-        </div>
-        }
-
-
+        </div>:
+        <div id='recipeCat'>
+            {props.recipeList.map((eachRecipe,idx) => (
+                <RecipeCard key={idx} recipe={eachRecipe}/>
+            ))}
+            
         </div>
     )
 }
