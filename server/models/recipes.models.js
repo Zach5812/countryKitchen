@@ -1,4 +1,5 @@
 const mongoose = require("mongoose")
+const Schema = mongoose.Schema
 
 const IngredientSchema = new mongoose.Schema({
     name: {
@@ -34,6 +35,10 @@ const CommentSchema = new mongoose.Schema({
         type: String,
         required: [true, "Commenter name is required"],
         minlength: [1, "Name must be at least 1 character"]
+    },
+    recipe: {
+        type:  Schema.Types.ObjectId,
+        ref: "Recipe"
     }
 }, {timestamps: true})
 
@@ -46,6 +51,10 @@ const RecipeSchema = new mongoose.Schema({
     category: {
         type: String,
         required: [true, "Recipe category is required"]
+    },
+    image: {
+        type: String,
+        required: [false, "Image URL is required"]
     },
     description: {
         type: String,
