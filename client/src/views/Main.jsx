@@ -11,7 +11,7 @@ import axios from 'axios';
 const Main = () => {
   const { loggedUser, setLoggedUser } = useAppContext();
   const navigate = useNavigate();
-  const [category, setCategory] = useState("")
+  const {category, setCategory} = useAppContext();
   const [recipeList, setRecipeList] = useState([])
   const [filteredList, setFilteredList] = useState([])
 
@@ -32,22 +32,19 @@ const Main = () => {
     axios.get('http://localhost:8000/api/recipes')
       .then(response => {
         setRecipeList(response.data)
-      })
-  }, [])
+        const filteredList = (response.data.filter((eachRecipe) =>category==='*'? eachRecipe["category"] !== category:eachRecipe["category"] === category))
+        setFilteredList(filteredList)
+        }
+      )
+  }, [category])
 
   const filterCat = (category) => {
-    const filteredList = (recipeList.filter((eachRecipe) => eachRecipe["category"] === category))
+    setCategory(category)
+    const filteredList = (recipeList.filter((eachRecipe) =>category==='*'? eachRecipe["category"] !== category:eachRecipe["category"] === category))
     setFilteredList(filteredList)
-    console.log(category)
-    console.log(filteredList)
   }
 
-  const filterAll = (category) => {
-    const filteredList = (recipeList.filter((eachRecipe) => eachRecipe["category"] !== category))
-    setFilteredList(filteredList)
-    console.log(category)
-    console.log(filteredList)
-  }
+
 
   return (
     <div className="Body">
@@ -59,8 +56,7 @@ const Main = () => {
             : null
           }
         <Paper id="Menu" elevation={10} square={true} variation="outlined">
-          <CatNav filterCat={filterCat}
-                  filterAll={filterAll} />
+          <CatNav filterCat={filterCat}/>
 
           <ListBoard recipeList={filteredList} />
         </Paper>
