@@ -52,14 +52,13 @@ const Main = () => {
   return (
     <div className="Body">
       <Paper id="Mat" elevation={10}>
-        <Paper id="Menu" elevation={10} square={true} variation="outlined">
           {loggedUser?.username ?
-            <div>
-              <h1>Welcome {loggedUser?.username}</h1>
-              <button className="btn btn-danger" onClick={handleClick}>Logout</button>
+            <div className="adminOptions" >
+              <button  onClick={handleClick}>Logout</button>
             </div>
             : null
           }
+        <Paper id="Menu" elevation={10} square={true} variation="outlined">
           <CatNav filterCat={filterCat}
                   filterAll={filterAll} />
 
