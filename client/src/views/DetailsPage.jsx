@@ -27,16 +27,9 @@ const DetailsPage = () => {
             .catch(error => console.log(error))
     }, [comments])
 
-    // const handleCommentSubmit = (e)=>{
-    //     e.preventDefault();
-    //     axios.patch(`http://localhost:8000/api/${id}`, {comments})
-    //     .then(reponse=>{
-    //         addComment(reponse.data)
-    //         .catch(error=> console.log(error))
-    //     })
-    // }
 
-    // const addComment = 
+
+setComments([...Comments, response.data])
 
     return (
         <div className="Body">
@@ -70,7 +63,7 @@ const DetailsPage = () => {
                                     <h3>Recipe History</h3>
                                     {recipe.story}
                                 </p>
-                                <Comments comments = {comments}/>
+                                <Comments comments = {comments} handleCommentSubmit = {handleCommentSubmit}/>
                                 
 
                             </div>
