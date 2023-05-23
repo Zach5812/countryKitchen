@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { Card, Paper } from '@mui/material';
+import Comments from '../components/Comments';
 
 const DetailsPage = () => {
     const [recipe, setRecipe] = useState();
@@ -64,12 +65,13 @@ const DetailsPage = () => {
                                         ))}
                                     </ol>
                                 </Card>
-                                <br />
+                                
                                 <p>
                                     <h3>Recipe History</h3>
                                     {recipe.story}
                                 </p>
-                                <br />
+                                <Comments comments = {comments}/>
+                                
 
                             </div>
                             <img src={recipe["image"]} alt={recipe.title} style={{ height: '300px', width: '300px', backgroundColor: "aliceblue", padding: '5px' }} />
@@ -77,7 +79,8 @@ const DetailsPage = () => {
                         <p>Not available</p>
                     }
 
-                    </Paper></div>
+                    </Paper>
+                    </div>
             </div>
         </div>)
 }

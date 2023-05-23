@@ -6,15 +6,20 @@ const Comments = (props) => {
 
     return (
         <div>
-            
+            {props.comments?
             <div>
                 <h3>Comments</h3>
                 {props.comments.map((eachComment, idx) => (
-                    <p key={idx}>{eachComment.name}
-                    {eachComment.comm}{eachComment.rating} </p>
-                ))}
-            </div>
-            <div>Add a comment</div> 
+                    <p key={idx}>{eachComment.name}</p>
+                    ))}
+                    {props.comments.map((eachComment, idx) => (
+                    <p key={idx}>{eachComment.rating}</p>
+                    ))} 
+                    {props.comments.map((eachComment, idx) => (
+                    <p key={idx}>{eachComment.comm}</p>
+                    ))} 
+            </div>:
+            <div>Add a comment</div>} 
 
         </div>
     )
