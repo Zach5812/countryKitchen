@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { Card, Paper } from '@mui/material';
 import Comments from '../components/Comments';
+import CatNav from '../components/CatNav';
 
 const DetailsPage = () => {
     const [recipe, setRecipe] = useState();
     const [comments, setComments] = useState([]);
-
+    const navigate = useNavigate()
     const { id } = useParams();
 
     useEffect(() => {
@@ -38,10 +39,20 @@ const DetailsPage = () => {
 
     // const addComment = 
 
+    // const filterCat = (category) => {
+    //     const filteredList = (recipeList.filter((eachRecipe) => eachRecipe["category"] === category))
+    //     setFilteredList(filteredList)
+    //     console.log(category)
+    //     console.log(filteredList)
+
+        //navigate to home
+    // }
+
     return (
         <div className="Body">
             <Paper id='Mat'>
                 <Paper id='Menu'>
+                    {/* <CatNav filterCat={filterCat} /> */}
                     <Paper id="recipeDetails">{recipe ?
                         <div>
                             <div style={{ display: "flex", justifyContent: "space-between" }}>
