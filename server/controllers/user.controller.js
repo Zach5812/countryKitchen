@@ -10,4 +10,17 @@ const create = async (req, res) => {
     }
 }
 
-module.exports = { create };
+const allUser = (req, res)=>{
+    User.find() // array of objects
+        .then(exList => res.json(exList))
+        .catch(err=>res.json(err))
+}
+
+const delUser = (req, res)=>{
+    User.deleteOne({_id: req.params.id}) // array of objects
+        .then(status => res.json(status))
+        .catch(err=>res.json(err))
+}
+
+
+module.exports = { create, allUser, delUser };

@@ -17,7 +17,7 @@ const Main = () => {
 
   const handleClick = () => {
     axios.delete("http://localhost:8000/api/auth", { withCredentials: true })
-      .then(_ => navigate("/"));
+      .then(_ => setLoggedUser(null));
   }
 
   useEffect(() => {
@@ -51,10 +51,13 @@ const Main = () => {
 
   return (
     <div className="Body">
-      <Paper id="Mat" elevation={4} >
-        <Paper id="Menu" elevation={5} square={true} variation="outlined">
+      <Paper class="Mat" elevation={4} >
+        <Paper class="Menu" elevation={5} square={true} variation="outlined">
           {loggedUser?.username ?
-            <button className="btn btn-danger" onClick={handleClick}>Logout</button>
+            <div>
+              <h1>Welcome {loggedUser?.username}</h1>
+              <button className="btn btn-danger" onClick={handleClick}>Logout</button>
+            </div>
             : null
           }
           <CatNav filterCat={filterCat}

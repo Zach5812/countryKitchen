@@ -14,7 +14,7 @@ const RecipeCard = (props) => {
             <Card variant="outlined" id="RecipeCard">
             <React.Fragment>
         <CardContent>
-            <img src={cuttingboard} style={{height:'200px',width:'140px'}}/>
+            <img src={props.recipe["image"]} style={{height:'150px',width:'150px',backgroundColor:"aliceblue",padding:"4px",borderRadius:"3px"}}/>
             <Typography variant="h6" component="div">
                 {props.recipe["title"]}
             </Typography>

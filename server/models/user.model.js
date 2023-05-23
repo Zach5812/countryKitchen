@@ -7,14 +7,6 @@ const UserSchema = new mongoose.Schema({
         required: [true, "Username is required"],
         minLength: [3, "Username must be at least 3 characters long"]
     },
-    email: {
-        type: String,
-        required: [true, "Email is required"],
-        validate: {
-            validator: val => /^([\w-\.]+@([\w-]+\.)+[\w-]+)?$/.test(val),
-            message: "Please enter a valid email"
-        }
-    },
     password: {
         type: String,
         required: [true, "Password is required"],
@@ -36,8 +28,8 @@ UserSchema.pre("save", async function(next) {
     next();
 });
 // define a static method for our model to handle login validations
-UserSchema.statics.checkLogin = async function({ email, password }) { 
-    const user = await this.findOne({ email });
+UserSchema.statics.checkLogin = async function({ username, password }) { 
+    const user = await this.findOne({ username });
     if (!(user && await bcrypt.compare(password, user.password))) {
         throw new this().invalidate("password", "Invalid Credentials");
     }

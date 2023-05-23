@@ -52,7 +52,7 @@ html{
   justify-content:center;
 }
 
-#Mat{
+.Mat{
   width: 90%;
   min-height: 500px;
   margin: 30px 0px;
@@ -62,7 +62,7 @@ html{
   align-items:center;
 }
 
-#Menu{
+.Menu{
   width: 95%;
   height: 95%;
   display:flex;
@@ -116,10 +116,26 @@ html{
 #RecipeCard{
   margin:5px;
   background-color:orange;
+  border:solid aliceblue 1px;
+}
+
+#RecipeCard img{
+  height:150px;
+  width:150px;
+  background-color:aliceblue;
+  padding:4px;
+  border-radius:3px
 }
 
 #welcome{
   text-align:center;
   height:100%;
   color:aliceblue
+}
+
+#recipeDetails{
+  height:90%;
+  margin:10px;
+  padding:10px;
+  background-color:orange
 }
