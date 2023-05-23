@@ -40,48 +40,57 @@ const DetailsPage = () => {
 
     return (
         <div className="Body">
-            <div className='Mat'>
-                <div className='Menu'>
+            <Paper id='Mat'>
+                <Paper id='Menu'>
                     <Paper id="recipeDetails">{recipe ?
-                        <div style={{ display: "flex", justifyContent: "space-between" }}>
-                            <div>
-                                <h1>{recipe.title}</h1>
-                                <h3>{recipe.description}</h3>
+                        <div>
+                            <div style={{ display: "flex", justifyContent: "space-between" }}>
+                                <div>
+                                    <Card id="specs" elevation={8}>
+                                        <h1>{recipe.title}</h1>
+                                        <h3>{recipe.description}</h3>
+                                    </Card>
 
-                                <Card id="specs">
-                                    <h3>Ingredients</h3>
-                                    <ul>
-                                        {recipe.ingredients.map((eachIng, idx) => (
-                                            <li key={idx}>{eachIng.amount}{eachIng.measurement} {eachIng.name}</li>
-                                        ))}
-                                    </ul>
+                                    <Card id="specs" className="specs" elevation={8}>
+                                        <h3>Ingredients</h3>
+                                        <ul>
+                                            {recipe.ingredients.map((eachIng, idx) => (
+                                                <li key={idx}>{eachIng.name}: {eachIng.amount} {eachIng.measurement}</li>
+                                            ))}
+                                        </ul>
 
-                                    <br />
+                                        <br />
 
-                                    <h3>Methods</h3>
-                                    <ol>
-                                        {recipe.methods.map((eachMeth, idx) => (
-                                            <li key={idx}>{eachMeth}</li>
-                                        ))}
-                                    </ol>
-                                </Card>
-                                
-                                <p>
-                                    <h3>Recipe History</h3>
-                                    {recipe.story}
-                                </p>
-                                <Comments comments = {comments}/>
-                                
+                                        <h3>Methods</h3>
+                                        <ol>
+                                            {recipe.methods.map((eachMeth, idx) => (
+                                                <li key={idx}>{eachMeth}</li>
+                                            ))}
+                                        </ol>
+                                    </Card>
+                                </div>
+                                <div>
+                                    <Card id="recImage" elevation={8}>
+                                        <img src={recipe["image"]} alt={recipe.title} />
+                                    </Card>
+                                </div>
 
                             </div>
-                            <img src={recipe["image"]} alt={recipe.title} style={{ height: '300px', width: '300px', backgroundColor: "aliceblue", padding: '5px' }} />
-                        </div> :
+                            <br />
+                            <Card id="specs" elevation={8}>
+                                <h3>Recipe History</h3>
+                                {recipe.story}
+
+                                <Comments comments={comments} />
+                            </Card>
+                        </div>
+                        :
                         <p>Not available</p>
                     }
 
                     </Paper>
-                    </div>
-            </div>
+                </Paper>
+            </Paper>
         </div>)
 }
 
