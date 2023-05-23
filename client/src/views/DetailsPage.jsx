@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import Comments from '../components/Comments';
 
 const DetailsPage = () => {
     const [recipe, setRecipe] = useState();
@@ -37,24 +38,18 @@ const DetailsPage = () => {
     // const addComment = 
 
     return (
-        <div className="Body">
-            <div className='Mat'>
-                <div className='Menu'>
-                    <Paper id="recipeDetails">{recipe ?
-                        <div style={{ display: "flex",justifyContent:"space-between" }}>
-                            <div>
-                                <h1>{recipe.title}</h1>
-                                <h3>{recipe.description}</h3>
+        <div id='Mat'>
+        <div id='Menu'>{recipe ?
+            <div> <h1>{recipe.title}</h1>
+                <h3>{recipe.description}</h3>
 
-                                <Card id="specs">
-                                    <h3>Ingredients</h3>
-                                    <ul>
-                                        {recipe.ingredients.map((eachIng, idx) => (
-                                            <li key={idx}>{eachIng.amount}{eachIng.measurement} {eachIng.name}</li>
-                                        ))}
-                                    </ul>
-
-                                    <br />
+                <p>
+                    <h3>Ingredients</h3>
+                    {recipe.ingredients.map((eachIng, idx) => (
+                        <p key={idx}>{eachIng.amount}{eachIng.measurement} {eachIng.name}</p>
+                    ))}
+                </p>
+                <br />
 
                 <p>
                     <h3>Methods</h3>
@@ -67,17 +62,22 @@ const DetailsPage = () => {
                     <h3>Recipe History</h3>
                     {recipe.story}
                 </p>
+                {/* <p>
+                    {comments.map((eachComment, idx) =>(
+                        <p key={idx}>{eachComment.name} <br />
+                        {eachComment.comm}
+                        <br />
+                        {eachComment.rating} </p>
+                    ))}
+                </p> */}
+                
+                <Comments comments = {comments}/>
 <br />
 
-                            </div>
-                            <img src={recipe["image"]} alt={recipe.title} style={{ height: '300px', width: '300px', backgroundColor:"aliceblue",padding:'5px' }} />
-                        </div> :
-                        <p>Not available</p>
-                    }
-
-                    </Paper></div>
-            </div>
-        </div>)
+            </div> :
+            <p>Not available</p>
+        }</div>
+    </div>)
 }
 
 export default DetailsPage
