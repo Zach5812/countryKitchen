@@ -51,8 +51,8 @@ const Main = () => {
 
   return (
     <div className="Body">
-      <Paper id="Mat" elevation={4} >
-        <Paper id="Menu" elevation={5} square={true} variation="outlined">
+      <Paper class="Mat" elevation={4} >
+        <Paper class="Menu" elevation={5} square={true} variation="outlined">
           {loggedUser?.username ?
             <div>
               <h1>Welcome {loggedUser?.username}</h1>

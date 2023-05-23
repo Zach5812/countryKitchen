@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import { Card, Paper } from '@mui/material';
 
 const DetailsPage = () => {
     const [recipe, setRecipe] = useState();
@@ -16,36 +17,49 @@ const DetailsPage = () => {
     }, [id])
 
     return (
-        <div id='Mat'>
-        <div id='Menu'>{recipe ?
-            <div> <h1>{recipe.title}</h1>
-                <h3>{recipe.description}</h3>
+        <div className="Body">
+            <div className='Mat'>
+                <div className='Menu'>
+                    <Paper id="recipeDetails">{recipe ?
+                        <div style={{ display: "flex",justifyContent:"space-between" }}>
+                            <div>
+                                <h1>{recipe.title}</h1>
+                                <h3>{recipe.description}</h3>
 
-                <p>
-                    <h3>Ingredients</h3>
-                    {recipe.ingredients.map((eachIng, idx) => (
-                        <p key={idx}>{eachIng.amount}{eachIng.measurement} {eachIng.name}</p>
-                    ))}
-                </p>
-                <br />
+                                <Card id="specs">
+                                    <h3>Ingredients</h3>
+                                    <ul>
+                                        {recipe.ingredients.map((eachIng, idx) => (
+                                            <li key={idx}>{eachIng.amount}{eachIng.measurement} {eachIng.name}</li>
+                                        ))}
+                                    </ul>
 
-                <p>
-                    <h3>Methods</h3>
-                    {recipe.methods.map((eachMeth, idx) => (
-                        <p key={idx}>{idx + 1}. {eachMeth}</p>
-                    ))}
-                </p>
-                <br />
-                <p>
-                    <h3>Recipe History</h3>
-                    {recipe.story}
-                </p>
-<br />
+                                    <br />
 
-            </div> :
-            <p>Not available</p>
-        }</div>
-    </div>)
+
+                                    <h3>Methods</h3>
+                                    <ol>
+                                        {recipe.methods.map((eachMeth, idx) => (
+                                            <li key={idx}>{eachMeth}</li>
+                                        ))}
+                                    </ol>
+                                </Card>
+                                <br />
+                                <p>
+                                    <h3>Recipe History</h3>
+                                    {recipe.story}
+                                </p>
+                                <br />
+
+                            </div>
+                            <img src={recipe["image"]} alt={recipe.title} style={{ height: '300px', width: '300px', backgroundColor:"aliceblue",padding:'5px' }} />
+                        </div> :
+                        <p>Not available</p>
+                    }
+
+                    </Paper></div>
+            </div>
+        </div>)
 }
 
 export default DetailsPage
