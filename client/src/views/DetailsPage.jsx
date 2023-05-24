@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react'
-import { useParams, useNavigate, Link } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { Card, Paper } from '@mui/material';
-// import Comments from '../components/Comments';
+import Comments from '../components/Comments';
 import CatNav from '../components/CatNav';
 
 const DetailsPage = () => {
     const [recipe, setRecipe] = useState();
-    // const [comments, setComments] = useState([]);
+    const [comments, setComments] = useState([]);
     const navigate = useNavigate()
     const { id } = useParams();
 
@@ -20,24 +20,17 @@ const DetailsPage = () => {
             .catch(error => console.log(error))
     }, [id])
 
-    // useEffect(() => {
-    //     axios.get(`http://localhost:8000/api/recipes/${id}`)
-    //         .then(response => {
-    //             setComments(response.data.comments)
-    //         })
-    //         .catch(error => console.log(error))
-    // }, [comments])
+    useEffect(() => {
+        axios.get(`http://localhost:8000/api/recipes/${id}`)
+            .then(response => {
+                setComments(response.data.comments)
+            })
+            .catch(error => console.log(error))
+    }, [comments])
 
-    // const handleCommentSubmit = (e)=>{
-    //     e.preventDefault();
-    //     axios.patch(`http://localhost:8000/api/${id}`, {comments})
-    //     .then(reponse=>{
-    //         addComment(reponse.data)
-    //         .catch(error=> console.log(error))
-    //     })
-    // }
 
-    // const addComment = 
+
+setComments([...Comments, response.data])
 
     // const filterCat = (category) => {
     //     const filteredList = (recipeList.filter((eachRecipe) => eachRecipe["category"] === category))
@@ -53,46 +46,49 @@ const DetailsPage = () => {
                     <button class="button" onClick={()=>navigate(-1)}>Home</button>
                     <Paper id="recipeDetails">{recipe ?
                         <div>
-                            <div style={{ display: "flex", justifyContent: "space-between" }}>
-                                <div>
+                        <div style={{ display: "flex", justifyContent: "space-between" }}>
+                            <div>
                                     <Card id="specs" elevation={8}>
-                                        <h1>{recipe.title}</h1>
-                                        <h3>{recipe.description}</h3>
+                                <h1>{recipe.title}</h1>
+                                <h3>{recipe.description}</h3>
                                     </Card>
 
                                     <Card id="specs" className="specs" elevation={8}>
-                                        <h3>Ingredients</h3>
-                                        <ul>
-                                            {recipe.ingredients.map((eachIng, idx) => (
+                                    <h3>Ingredients</h3>
+                                    <ul>
+                                        {recipe.ingredients.map((eachIng, idx) => (
                                                 <li key={idx}>{eachIng.name}: {eachIng.amount} {eachIng.measurement}</li>
-                                            ))}
-                                        </ul>
+                                        ))}
+                                    </ul>
 
-                                        <br />
+                                    <br />
 
-                                        <h3>Methods</h3>
-                                        <ol>
-                                            {recipe.methods.map((eachMeth, idx) => (
-                                                <li key={idx}>{eachMeth}</li>
-                                            ))}
-                                        </ol>
-                                    </Card>
+                                    <h3>Methods</h3>
+                                    <ol>
+                                        {recipe.methods.map((eachMeth, idx) => (
+                                            <li key={idx}>{eachMeth}</li>
+                                        ))}
+                                    </ol>
+                                </Card>
                                 </div>
                                 <div>
                                     <Card id="recImage" elevation={8}>
                                         <img src={recipe["image"]} alt={recipe.title} />
                                     </Card>
                                 </div>
-
+                                
                             </div>
                             <br />
                             <Card id="specs" elevation={8}>
-                                <h3>Recipe History</h3>
-                                {recipe.story}
+                                    <h3>Recipe History</h3>
+                                    {recipe.story}
+                                
+                                <Comments comments = {comments} handleCommentSubmit = {handleCommentSubmit}/>
+                                
 
                                 {/* <Comments comments={comments} /> */}
                             </Card>
-                        </div>
+                            </div>
                         :
                         <p>Not available</p>
                     }
