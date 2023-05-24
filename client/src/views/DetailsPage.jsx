@@ -8,7 +8,7 @@ import CatNav from '../components/CatNav';
 const DetailsPage = () => {
     const [recipe, setRecipe] = useState();
     const [comments, setComments] = useState([]);
-    const navigate = useNavigate()
+    const navigate = useNavigate
     const { id } = useParams();
 
     useEffect(() => {
@@ -26,71 +26,82 @@ const DetailsPage = () => {
                 setComments(response.data.comments)
             })
             .catch(error => console.log(error))
-    }, [comments])
+    }, [])
 
+    const handleCommentSubmit = (e)=>{
+        e.preventDefault();
+        axios.patch(`http://localhost:8000/api/${id}`, {comments})
+        .then(response=>{
+            addComment(response.data)
+            .catch(error=> console.log(error))
+        })
+    }
 
-
-setComments([...Comments, response.data])
+    const addComment =  (newComment) =>{
+        setComments([...comments, newComment])
+    }
 
     // const filterCat = (category) => {
     //     const filteredList = (recipeList.filter((eachRecipe) => eachRecipe["category"] === category))
     //     setFilteredList(filteredList)
     //     console.log(category)
     //     console.log(filteredList)
-
-        //navigate to home
-    // }
+    //   }
 
     return (
         <div className="Body">
-<<<<<<< HEAD
             <Paper id='Mat'>
                 <Paper id='Menu'>
-                    {/* <CatNav filterCat={filterCat} /> */}
-=======
-            <div className='Mat'>
-                <div className='Menu'>
->>>>>>> a8e4236350aaee404e69d3f2bfb23c7df5a3a0a3
+                    {/* <CatNav filterCat={filterCat}/> */}
                     <Paper id="recipeDetails">{recipe ?
-                        <div style={{ display: "flex", justifyContent: "space-between" }}>
-                            <div>
-                                <h1>{recipe.title}</h1>
-                                <h3>{recipe.description}</h3>
+                        <div>
+                            <div style={{ display: "flex", justifyContent: "space-between" }}>
+                                <div>
+                                    <Card id="specs" elevation={8}>
+                                        <h1>{recipe.title}</h1>
+                                        <h3>{recipe.description}</h3>
+                                    </Card>
 
-                                <Card id="specs">
-                                    <h3>Ingredients</h3>
-                                    <ul>
-                                        {recipe.ingredients.map((eachIng, idx) => (
-                                            <li key={idx}>{eachIng.amount}{eachIng.measurement} {eachIng.name}</li>
-                                        ))}
-                                    </ul>
+                                    <Card id="specs" className="specs" elevation={8}>
+                                        <h3>Ingredients</h3>
+                                        <ul>
+                                            {recipe.ingredients.map((eachIng, idx) => (
+                                                <li key={idx}>{eachIng.name}: {eachIng.amount} {eachIng.measurement}</li>
+                                            ))}
+                                        </ul>
 
-                                    <br />
+                                        <br />
 
-                                    <h3>Methods</h3>
-                                    <ol>
-                                        {recipe.methods.map((eachMeth, idx) => (
-                                            <li key={idx}>{eachMeth}</li>
-                                        ))}
-                                    </ol>
-                                </Card>
-                                
-                                <p>
-                                    <h3>Recipe History</h3>
-                                    {recipe.story}
-                                </p>
-                                <Comments comments = {comments} handleCommentSubmit = {handleCommentSubmit}/>
-                                
+                                        <h3>Methods</h3>
+                                        <ol>
+                                            {recipe.methods.map((eachMeth, idx) => (
+                                                <li key={idx}>{eachMeth}</li>
+                                            ))}
+                                        </ol>
+                                    </Card>
+                                </div>
+                                <div>
+                                    <Card id="recImage" elevation={8}>
+                                        <img src={recipe["image"]} alt={recipe.title} />
+                                    </Card>
+                                </div>
 
                             </div>
-                            <img src={recipe["image"]} alt={recipe.title} style={{ height: '300px', width: '300px', backgroundColor: "aliceblue", padding: '5px' }} />
-                        </div> :
+                            <br />
+                            <Card id="specs" elevation={8}>
+                                <h3>Recipe History</h3>
+                                {recipe.story}
+
+                                <Comments addToDom={addComment} comments={comments} id ={id} />
+                            </Card>
+                        </div>
+                        :
                         <p>Not available</p>
                     }
 
                     </Paper>
-                    </div>
-            </div>
+                </Paper>
+            </Paper>
         </div>)
 }
 

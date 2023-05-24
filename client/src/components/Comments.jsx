@@ -1,22 +1,27 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import StarRating from './StarRating';
+import ReadStarRating from './ReadStarRating';
 
 const Comments = (props) => {
     const [newComment, setNewComment] = useState("");
-
-    if (newComment === ""){
-        return;
-    }
+    const [comm, setComm] = useState("")
+    const [name, setName] = useState("")
+    const [rating, setRating] =useState(0)
 
     const handleCommentSubmit = (e)=>{
         e.preventDefault();
-        axios.patch(`http://localhost:8000/api/recipes/comments/${id}`, {comm})
+        axios.patch(`http://localhost:8000/api/recipes/comments/${props.id}`, {comm, name, rating})
         .then(response=>{
-            .then()
-            .catch(error=> console.log(error))
+                props.addToDom(response.data)
+                setComm("")
+                setName("")
+                setRating(0)
         })
-    }
+        .catch(error=> console.log(error))
+        }
+    
 
     return (
         <div>
@@ -24,15 +29,21 @@ const Comments = (props) => {
             <div>
                 <h3>Comments</h3>
                 {props.comments.map((eachComment, idx) => (
-                    <p key={idx}>{eachComment.name}</p>
-                    ))}
-                    {props.comments.map((eachComment, idx) => (
-                    <p key={idx}>{eachComment.rating}</p>
-                    ))}
-                    {props.comments.map((eachComment, idx) => (
-                    <p key={idx}>{eachComment.comm}</p>
-                    ))}
-                
+                    <div key={idx}>
+                    <p >{eachComment.name}</p>
+                    <p><ReadStarRating value={eachComment.rating}/></p>
+                    <p>{eachComment.comm}</p>
+                    </div>))}
+                <form onSubmit={handleCommentSubmit}>
+                    <div><label>Comment:</label>
+                    <input type="text" name="" id="" value={comm}
+                        onChange={e=>setComm(e.target.value)}/></div>
+                    <div><label>Your Name:</label>
+                        <input type="text" name="" id="" value={name}
+                        onChange={e=>setName(e.target.value)}/></div>
+                        <StarRating value={rating} setValue={setRating} onChange={e=>setRating(e.target.value)}/>
+                    <button type='submit'>Add a Comment</button>
+                </form>
             </div>:
             <div>Add a comment</div>} 
 
