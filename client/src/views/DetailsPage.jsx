@@ -32,13 +32,6 @@ const DetailsPage = () => {
 
 // setComments([...Comments, response.data])
 
-    // const filterCat = (category) => {
-    //     const filteredList = (recipeList.filter((eachRecipe) => eachRecipe["category"] === category))
-    //     setFilteredList(filteredList)
-    //     console.log(category)
-    //     console.log(filteredList)
-    //   }
-
     return (
         <div className="Body">
             <Paper id='Mat'>
@@ -50,7 +43,7 @@ const DetailsPage = () => {
                             <div>
                                     <Card id="specs" elevation={8}>
                                 <h1>{recipe.title}</h1>
-                                <h3>{recipe.description}</h3>
+                                <h4><i>{recipe.description}</i></h4>
                                     </Card>
 
                                     <Card id="specs" className="specs" elevation={8}>
@@ -63,7 +56,7 @@ const DetailsPage = () => {
 
                                     <br />
 
-                                    <h3>Methods</h3>
+                                    <h3>Method</h3>
                                     <ol>
                                         {recipe.methods.map((eachMeth, idx) => (
                                             <li key={idx}>{eachMeth}</li>
