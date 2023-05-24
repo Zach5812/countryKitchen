@@ -1,8 +1,12 @@
 import React from 'react'
+import RecipeForm from '../components/RecipeForm'
 
 const CreatePage = () => {
   return (
-    <div>CreatePage</div>
+    <div>
+      <h2>Add a new recipe</h2>
+      <RecipeForm submit={"Add a new Recipe"} recipeID={""} post={"post"}/>
+    </div>
   )
 }
 

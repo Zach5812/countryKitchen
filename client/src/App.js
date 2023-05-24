@@ -6,6 +6,8 @@ import AdminLogin from './views/AdminLogin';
 import { useState } from 'react';
 import AppContext from './libs/context';
 import DetailsPage from './views/DetailsPage';
+import CreatePage from './views/CreatePage';
+import EditPage from './views/EditPage';
 
 function App() {
   const [loggedUser, setLoggedUser] = useState();
@@ -16,6 +18,8 @@ function App() {
         <Route path="/" element={<Main />} />
         <Route path="/recipes/:id" element={<DetailsPage />} />
         <Route path="/admin" element={<AdminLogin />} />
+        <Route path="/recipes/create" element={<CreatePage />} />
+        <Route path="/recipes/edit/:id" element={<EditPage />} />
       </Routes>
     </AppContext.Provider>
   );
