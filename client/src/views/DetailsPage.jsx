@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom';
+import { Link, useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { Card, Paper } from '@mui/material';
 import Comments from '../components/Comments';
@@ -9,6 +9,8 @@ const DetailsPage = () => {
     const [comments, setComments] = useState([]);
 
     const { id } = useParams();
+
+    const navigate = useNavigate()
 
     useEffect(() => {
         axios.get(`http://localhost:8000/api/recipes/${id}`)
@@ -26,6 +28,10 @@ const DetailsPage = () => {
             })
             .catch(error => console.log(error))
     }, [comments])
+
+    const edit = () => {
+        navigate(`/recipes/edit/${id}`)
+      }
 
     // const handleCommentSubmit = (e)=>{
     //     e.preventDefault();
@@ -72,6 +78,7 @@ const DetailsPage = () => {
                                 <div>
                                     <Card id="recImage" elevation={8}>
                                         <img src={recipe["image"]} alt={recipe.title} />
+                                        <button onClick={edit}>Edit Recipe Details</button>
                                     </Card>
                                 </div>
 
