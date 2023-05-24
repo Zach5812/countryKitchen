@@ -28,12 +28,12 @@ const CommentSchema = new mongoose.Schema({
     },
     rating: {
         type: Number,
-        required: [false, "Ingredient name is required"],
+        required: [true, "Ingredient name is required"],
         min: [0, "Ingredient amount must be positive"]
     },
     name: {
         type: String,
-        required: [false, "Commenter name is required"],
+        required: [true, "Commenter name is required"],
         minlength: [1, "Name must be at least 1 character"]
     },
     recipe: {
