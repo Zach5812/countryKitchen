@@ -2,12 +2,12 @@ import React, { useEffect, useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { Card, Paper } from '@mui/material';
-import Comments from '../components/Comments';
+// import Comments from '../components/Comments';
 import CatNav from '../components/CatNav';
 
 const DetailsPage = () => {
     const [recipe, setRecipe] = useState();
-    const [comments, setComments] = useState([]);
+    // const [comments, setComments] = useState([]);
     const navigate = useNavigate()
     const { id } = useParams();
 
@@ -20,17 +20,17 @@ const DetailsPage = () => {
             .catch(error => console.log(error))
     }, [id])
 
-    useEffect(() => {
-        axios.get(`http://localhost:8000/api/recipes/${id}`)
-            .then(response => {
-                setComments(response.data.comments)
-            })
-            .catch(error => console.log(error))
-    }, [comments])
+    // useEffect(() => {
+    //     axios.get(`http://localhost:8000/api/recipes/${id}`)
+    //         .then(response => {
+    //             setComments(response.data.comments)
+    //         })
+    //         .catch(error => console.log(error))
+    // }, [comments])
 
 
 
-setComments([...Comments, response.data])
+// setComments([...Comments, response.data])
 
     // const filterCat = (category) => {
     //     const filteredList = (recipeList.filter((eachRecipe) => eachRecipe["category"] === category))
@@ -43,7 +43,7 @@ setComments([...Comments, response.data])
         <div className="Body">
             <Paper id='Mat'>
                 <Paper id='Menu'>
-                    <button class="button" onClick={()=>navigate(-1)}>Home</button>
+                    <button className="button" onClick={()=>navigate(-1)} style={{width:"fit-content",margin:"5px 0px 0px 10px"}}>Home</button>
                     <Paper id="recipeDetails">{recipe ?
                         <div>
                         <div style={{ display: "flex", justifyContent: "space-between" }}>
@@ -83,7 +83,7 @@ setComments([...Comments, response.data])
                                     <h3>Recipe History</h3>
                                     {recipe.story}
                                 
-                                <Comments comments = {comments} handleCommentSubmit = {handleCommentSubmit}/>
+                                {/* <Comments comments = {comments} handleCommentSubmit = {handleCommentSubmit}/> */}
                                 
 
                                 {/* <Comments comments={comments} /> */}
