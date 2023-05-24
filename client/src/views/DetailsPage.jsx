@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from 'react'
+
 import { Link, useParams, useNavigate } from 'react-router-dom';
+
 import axios from 'axios';
 import { Card, Paper } from '@mui/material';
 import Comments from '../components/Comments';
+import CatNav from '../components/CatNav';
 
 const DetailsPage = () => {
     const [recipe, setRecipe] = useState();
     const [comments, setComments] = useState([]);
-
+    const navigate = useNavigate
     const { id } = useParams();
 
     const navigate = useNavigate()
@@ -27,27 +30,29 @@ const DetailsPage = () => {
                 setComments(response.data.comments)
             })
             .catch(error => console.log(error))
-    }, [comments])
+    }, [])
 
     const edit = () => {
         navigate(`/recipes/edit/${id}`)
       }
 
-    // const handleCommentSubmit = (e)=>{
-    //     e.preventDefault();
-    //     axios.patch(`http://localhost:8000/api/${id}`, {comments})
-    //     .then(reponse=>{
-    //         addComment(reponse.data)
-    //         .catch(error=> console.log(error))
-    //     })
-    // }
+    const addComment =  (newComment) =>{
+        setComments([...comments, newComment])
+    }
 
-    // const addComment = 
+
+    // const filterCat = (category) => {
+    //     const filteredList = (recipeList.filter((eachRecipe) => eachRecipe["category"] === category))
+    //     setFilteredList(filteredList)
+    //     console.log(category)
+    //     console.log(filteredList)
+    //   }
 
     return (
         <div className="Body">
             <Paper id='Mat'>
                 <Paper id='Menu'>
+                    {/* <CatNav filterCat={filterCat}/> */}
                     <Paper id="recipeDetails">{recipe ?
                         <div>
                             <div style={{ display: "flex", justifyContent: "space-between" }}>
@@ -88,7 +93,7 @@ const DetailsPage = () => {
                                 <h3>Recipe History</h3>
                                 {recipe.story}
 
-                                <Comments comments={comments} />
+                                <Comments addToDom={addComment} comments={comments} id ={id} />
                             </Card>
                         </div>
                         :

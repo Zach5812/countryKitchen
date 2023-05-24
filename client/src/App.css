@@ -6,6 +6,12 @@ html {
     linear-gradient(90deg, rgba(32, 100, 210, .5) 0 35%, transparent 36% 96%, rgba(32, 100, 210, .5) 97% 100%);
 }
 
+@import url("https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap");
+@import "@fontsource/roboto/300.css";
+@import "@fontsource/roboto/400.css";
+@import "@fontsource/roboto/500.css";
+@import "@fontsource/roboto/700.css";
+
 .App {
   text-align: center;
 }
@@ -147,7 +153,7 @@ html {
 }
 
 #recImage {
-  margin-left: 30px;
+  margin-left: 10px;
   background-color: whitesmoke;
   padding: 5px;
 }

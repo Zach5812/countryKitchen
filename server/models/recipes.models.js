@@ -28,12 +28,12 @@ const CommentSchema = new mongoose.Schema({
     },
     rating: {
         type: Number,
-        required: [true, "Ingredient name is required"],
+        required: [false, "Ingredient name is required"],
         min: [0, "Ingredient amount must be positive"]
     },
     name: {
         type: String,
-        required: [true, "Commenter name is required"],
+        required: [false, "Commenter name is required"],
         minlength: [1, "Name must be at least 1 character"]
     },
     recipe: {
@@ -73,3 +73,4 @@ const RecipeSchema = new mongoose.Schema({
 }, {timestamps: true})
 
 module.exports.Recipe = mongoose.model('Recipe', RecipeSchema);
+module.exports.Comment = mongoose.model('Comment', CommentSchema);
