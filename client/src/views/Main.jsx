@@ -35,6 +35,10 @@ const Main = () => {
       })
   }, [])
 
+  const newRecipe = () => {
+    navigate(`/recipes/create`)
+  }
+
   const filterCat = (category) => {
     const filteredList = (recipeList.filter((eachRecipe) => eachRecipe["category"] === category))
     setFilteredList(filteredList)
@@ -55,6 +59,7 @@ const Main = () => {
           {loggedUser?.username ?
             <div className="adminOptions" >
               <button  onClick={handleClick}>Logout</button>
+              <button onClick={newRecipe}>Add a new recipe</button>
             </div>
             : null
           }
