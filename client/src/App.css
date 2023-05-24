@@ -171,3 +171,7 @@ html {
   align-self:flex-end;
   justify-self:center;
 }
+
+p{
+  white-space: pre-wrap;
+}
