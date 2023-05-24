@@ -118,6 +118,7 @@ html {
 }
 
 #RecipeCard {
+  height:300px;
   margin: 5px;
   background-color: orange;
   /* border: solid aliceblue 1px; */

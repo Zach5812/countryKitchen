@@ -5,7 +5,6 @@ import { Link, useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { Card, Paper } from '@mui/material';
 import Comments from '../components/Comments';
-import CatNav from '../components/CatNav';
 
 const DetailsPage = () => {
     const [recipe, setRecipe] = useState();
@@ -32,51 +31,44 @@ const DetailsPage = () => {
 
     const edit = () => {
         navigate(`/recipes/edit/${id}`)
-      }
-
-
-    const addComment =  (newComment) =>{
-        setComments([...comments, newComment])
     }
 
-    // const filterCat = (category) => {
-    //     const filteredList = (recipeList.filter((eachRecipe) => eachRecipe["category"] === category))
-    //     setFilteredList(filteredList)
-    //     console.log(category)
-    //     console.log(filteredList)
-    //   }
+
+    const addComment = (newComment) => {
+        setComments([...comments, newComment])
+    }
 
     return (
         <div className="Body">
             <Paper id='Mat'>
                 <Paper id='Menu'>
-                    <button className="button" onClick={()=>navigate(-1)} style={{width:"fit-content",margin:"5px 0px 0px 10px"}}>Home</button>
+                    <button className="button" onClick={() => navigate(-1)} style={{ width: "fit-content", margin: "5px 0px 0px 10px" }}>Home</button>
                     <Paper id="recipeDetails">{recipe ?
                         <div>
-                        <div style={{ display: "flex", justifyContent: "space-between" }}>
-                            <div>
+                            <div style={{ display: "flex", justifyContent: "space-between" }}>
+                                <div>
                                     <Card id="specs" elevation={8}>
-                                <h1>{recipe.title}</h1>
-                                <h4><i>{recipe.description}</i></h4>
+                                        <h1>{recipe.title}</h1>
+                                        <h4><i>{recipe.description}</i></h4>
                                     </Card>
 
                                     <Card id="specs" className="specs" elevation={8}>
-                                    <h3>Ingredients</h3>
-                                    <ul>
-                                        {recipe.ingredients.map((eachIng, idx) => (
+                                        <h3>Ingredients</h3>
+                                        <ul>
+                                            {recipe.ingredients.map((eachIng, idx) => (
                                                 <li key={idx}>{eachIng.name}: {eachIng.amount} {eachIng.measurement}</li>
-                                        ))}
-                                    </ul>
+                                            ))}
+                                        </ul>
 
                                         <br />
 
-                                    <h3>Method</h3>
-                                    <ol>
-                                        {recipe.methods.map((eachMeth, idx) => (
-                                            <li key={idx}>{eachMeth}</li>
-                                        ))}
-                                    </ol>
-                                </Card>
+                                        <h3>Method</h3>
+                                        <ol>
+                                            {recipe.methods.map((eachMeth, idx) => (
+                                                <li key={idx}>{eachMeth}</li>
+                                            ))}
+                                        </ol>
+                                    </Card>
                                 </div>
                                 <div>
                                     <Card id="recImage" elevation={8}>
@@ -84,17 +76,17 @@ const DetailsPage = () => {
                                         <button onClick={edit}>Edit Recipe Details</button>
                                     </Card>
                                 </div>
-                                
+
                             </div>
                             <br />
                             <Card id="specs" elevation={8}>
-                                    <h3>Recipe History</h3>
-                                    <p>{recipe.story}</p>
-                                
-                                    <Comments addToDom={addComment} comments={comments} id ={id} />
+                                <h3>Recipe History</h3>
+                                <p>{recipe.story}</p>
+
+                                <Comments addToDom={addComment} comments={comments} id={id} />
 
                             </Card>
-                            </div>
+                        </div>
                         :
                         <p>Not available</p>
                     }
