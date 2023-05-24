@@ -13,8 +13,6 @@ const DetailsPage = () => {
     const navigate = useNavigate
     const { id } = useParams();
 
-    const navigate = useNavigate()
-
     useEffect(() => {
         axios.get(`http://localhost:8000/api/recipes/${id}`)
             .then(response => {
