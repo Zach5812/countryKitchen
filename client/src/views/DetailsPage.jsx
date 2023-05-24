@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import { useParams, useNavigate } from 'react-router-dom';
+
+import { Link, useParams, useNavigate } from 'react-router-dom';
+
 import axios from 'axios';
 import { Card, Paper } from '@mui/material';
 import Comments from '../components/Comments';
@@ -28,10 +30,21 @@ const DetailsPage = () => {
             .catch(error => console.log(error))
     }, [])
 
+    const edit = () => {
+        navigate(`/recipes/edit/${id}`)
+      }
+
+
     const addComment =  (newComment) =>{
         setComments([...comments, newComment])
     }
 
+    // const filterCat = (category) => {
+    //     const filteredList = (recipeList.filter((eachRecipe) => eachRecipe["category"] === category))
+    //     setFilteredList(filteredList)
+    //     console.log(category)
+    //     console.log(filteredList)
+    //   }
 
     return (
         <div className="Body">
@@ -68,6 +81,7 @@ const DetailsPage = () => {
                                 <div>
                                     <Card id="recImage" elevation={8}>
                                         <img src={recipe["image"]} alt={recipe.title} />
+                                        <button onClick={edit}>Edit Recipe Details</button>
                                     </Card>
                                 </div>
                                 
