@@ -30,8 +30,10 @@ const Comments = (props) => {
                 <h3>Comments</h3>
                 {props.comments.map((eachComment, idx) => (
                     <div key={idx}>
-                    <p >{eachComment.name}</p>
-                    <p><ReadStarRating value={eachComment.rating}/></p>
+                        <div style={{display: "flex"}}>
+                    <p>{eachComment.name}</p>
+                    <p style={{alignSelf: "center"}}><ReadStarRating value={eachComment.rating}/></p>
+                    </div>
                     <p>{eachComment.comm}</p>
                     </div>))}
                 <form onSubmit={handleCommentSubmit}>
