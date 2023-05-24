@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { Card, Paper } from '@mui/material';
-// import Comments from '../components/Comments';
+import Comments from '../components/Comments';
 import CatNav from '../components/CatNav';
 
 const DetailsPage = () => {
@@ -28,17 +28,10 @@ const DetailsPage = () => {
             .catch(error => console.log(error))
     }, [])
 
-    const handleCommentSubmit = (e)=>{
-        e.preventDefault();
-        axios.patch(`http://localhost:8000/api/${id}`, {comments})
-        .then(response=>{
-            addComment(response.data)
-            .catch(error=> console.log(error))
-        })
+    const addComment = (newComment) =>{
+        setComments([...comments, newComment])
     }
 
-
-setComments([...Comments, response.data])
 
     return (
         <div className="Body">
