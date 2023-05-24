@@ -28,15 +28,6 @@ const DetailsPage = () => {
             .catch(error => console.log(error))
     }, [])
 
-    const handleCommentSubmit = (e)=>{
-        e.preventDefault();
-        axios.patch(`http://localhost:8000/api/${id}`, {comments})
-        .then(response=>{
-            addComment(response.data)
-            .catch(error=> console.log(error))
-        })
-    }
-
     const addComment =  (newComment) =>{
         setComments([...comments, newComment])
     }
