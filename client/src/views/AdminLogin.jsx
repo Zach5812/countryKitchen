@@ -1,9 +1,11 @@
 import React from 'react'
 import Form from '../components/LoginForm'
+import { Paper } from '@mui/material'
 
 const AdminLogin = () => {
     return (
-        <main className="row justify-content-center">
+        <div className="Body">
+        <Paper id="Mat">
             <Form
                 name="Login"
                 action="auth"
@@ -13,7 +15,8 @@ const AdminLogin = () => {
                 }}
 
             />
-        </main>
+        </Paper>
+        </div>
     )
 }
 

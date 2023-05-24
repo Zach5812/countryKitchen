@@ -14,7 +14,7 @@ const CatNav = (props) => {
             <Card id="navOption" elevation={8}  value="cakes" onClick={e=>props.filterCat("cakes")}>Cakes and puddings<img src={cakes}/></Card>
             <Card id="navOption" elevation={8}  value="pies" onClick={e=>props.filterCat("pies")}>Pies and tarts<img src={pies}/></Card>
             <Card id="navOption" elevation={8}  value="quicks" onClick={e=>props.filterCat("quicks")}>Quick-breads<img src={quicks}/></Card>
-            <Card id="navOption" elevation={8}  value="*" onClick={e=>props.filterAll("*")}>Everything<img src={all}/></Card>
+            <Card id="navOption" elevation={8}  value="*" onClick={e=>props.filterCat("*")}>Everything<img src={all}/></Card>
             </div>
 
     )

@@ -81,9 +81,10 @@ html {
 }
 
 #navbar {
-  height: 175px;
+  height: fit-content;
   padding: 10px;
   display: flex;
+  flex-wrap:wrap;
   justify-content: space-evenly;
   text-align: center;
 }
