@@ -7,7 +7,7 @@ import CatNav from '../components/CatNav';
 
 const DetailsPage = () => {
     const [recipe, setRecipe] = useState();
-     const [comments, setComments] = useState([]);
+    const [comments, setComments] = useState([]);
     const navigate = useNavigate
     const { id } = useParams();
 
@@ -26,7 +26,7 @@ const DetailsPage = () => {
                 setComments(response.data.comments)
             })
             .catch(error => console.log(error))
-    }, [comments])
+    }, [])
 
     const handleCommentSubmit = (e)=>{
         e.preventDefault();
