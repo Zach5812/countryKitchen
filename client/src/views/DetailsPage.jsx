@@ -7,7 +7,7 @@ import CatNav from '../components/CatNav';
 
 const DetailsPage = () => {
     const [recipe, setRecipe] = useState();
-    // const [comments, setComments] = useState([]);
+    const [comments, setComments] = useState([]);
     const navigate = useNavigate()
     const { id } = useParams();
 
@@ -20,17 +20,25 @@ const DetailsPage = () => {
             .catch(error => console.log(error))
     }, [id])
 
-    // useEffect(() => {
-    //     axios.get(`http://localhost:8000/api/recipes/${id}`)
-    //         .then(response => {
-    //             setComments(response.data.comments)
-    //         })
-    //         .catch(error => console.log(error))
-    // }, [comments])
+    useEffect(() => {
+        axios.get(`http://localhost:8000/api/recipes/${id}`)
+            .then(response => {
+                setComments(response.data.comments)
+            })
+            .catch(error => console.log(error))
+    }, [])
+
+    const handleCommentSubmit = (e)=>{
+        e.preventDefault();
+        axios.patch(`http://localhost:8000/api/${id}`, {comments})
+        .then(response=>{
+            addComment(response.data)
+            .catch(error=> console.log(error))
+        })
+    }
 
 
-
-// setComments([...Comments, response.data])
+setComments([...Comments, response.data])
 
     return (
         <div className="Body">
@@ -54,7 +62,7 @@ const DetailsPage = () => {
                                         ))}
                                     </ul>
 
-                                    <br />
+                                        <br />
 
                                     <h3>Method</h3>
                                     <ol>
@@ -76,10 +84,8 @@ const DetailsPage = () => {
                                     <h3>Recipe History</h3>
                                     {recipe.story}
                                 
-                                {/* <Comments comments = {comments} handleCommentSubmit = {handleCommentSubmit}/> */}
-                                
+                                    <Comments addToDom={addComment} comments={comments} id ={id} />
 
-                                {/* <Comments comments={comments} /> */}
                             </Card>
                             </div>
                         :
