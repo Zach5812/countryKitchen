@@ -23,6 +23,7 @@ const Comments = (props) => {
         }
     
 
+
     return (
         <div>
             {props.comments?
@@ -33,6 +34,7 @@ const Comments = (props) => {
                         <div style={{display: "flex"}}>
                     <p style={{fontWeight: "bold"}}>{eachComment.name}</p>
                     <p style={{alignSelf: "center"}}><ReadStarRating value={eachComment.rating}/></p>
+                    {/* <button onClick={handleDelete}>Delete comment</button> */}
                     </div>
                     <p>{eachComment.comm}</p>
                     </div>))}
