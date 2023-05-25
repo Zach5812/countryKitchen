@@ -6,7 +6,11 @@ import axios from 'axios';
 import { Card, Grid, Paper } from '@mui/material';
 import Comments from '../components/Comments';
 
+import { useAppContext } from '../libs/context';
+
+
 const DetailsPage = () => {
+    const { loggedUser, setLoggedUser } = useAppContext();
     const [recipe, setRecipe] = useState();
     const [comments, setComments] = useState([]);
     const navigate = useNavigate()
@@ -29,10 +33,17 @@ const DetailsPage = () => {
             .catch(error => console.log(error))
     }, [])
 
+    useEffect(() => {
+        if (!loggedUser) {
+          axios.get("http://localhost:8000/api/auth", { withCredentials: true })
+            .then(res => setLoggedUser(res.data))
+            .catch(_ => navigate("/"));
+        }
+      }, [])
+
     const edit = () => {
         navigate(`/recipes/edit/${id}`)
     }
-
 
     const addComment = (newComment) => {
         setComments([...comments, newComment])
@@ -112,9 +123,15 @@ const DetailsPage = () => {
                                 <div>
                                     <Card id="recImage" elevation={8}>
                                         <img src={recipe["image"]} alt={recipe.title} />
+                                        {loggedUser?.username ?
+                                            <div className="adminOptions" >
+                                                <button onClick={edit}>Edit Recipe Details</button>
+                                            </div>
+                                            : null
+                                        }
+
                                     </Card>
                                 </div>
-
                             </div>
                             <br />
                             <Card id="specs" elevation={8}>
