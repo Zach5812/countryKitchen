@@ -27,22 +27,25 @@ const Comments = (props) => {
         <div>
             {props.comments?
             <div>
-                <h3>Comments</h3>
+                <h3 style={{marginTop:'30px',marginBottom:'0px'}}>Comments</h3>
                 {props.comments.map((eachComment, idx) => (
                     <div key={idx}>
-                    <p >{eachComment.name}</p>
-                    <p><ReadStarRating value={eachComment.rating}/></p>
-                    <p>{eachComment.comm}</p>
+                        <div style={{display: "flex"}}>
+                    <p style={{fontWeight: "bold", marginBottom:'5px'}}>{eachComment.name}</p>
+                    <p style={{alignSelf: "center",marginBottom:'5px'}}><ReadStarRating value={eachComment.rating}/></p>
+                    </div>
+                    <p style={{marginTop:'0px',marginBottom:'0px',paddingBottom:'20px'}}>{eachComment.comm}</p>
                     </div>))}
-                <form onSubmit={handleCommentSubmit}>
-                    <div><label>Comment:</label>
+                <form onSubmit={handleCommentSubmit} style={{marginTop:'16px'}}>
+                    <div><label>Comment: </label>
                     <input type="text" name="" id="" value={comm}
                         onChange={e=>setComm(e.target.value)}/></div>
-                    <div><label>Your Name:</label>
+                    <div><label>Your Name: </label>
                         <input type="text" name="" id="" value={name}
-                        onChange={e=>setName(e.target.value)}/></div>
+                        onChange={e=>setName(e.target.value)}/></div><br/>
+                        <label><i>Please rate it if you made it!</i> </label>
                         <StarRating value={rating} setValue={setRating} onChange={e=>setRating(e.target.value)}/>
-                    <button type='submit'>Add a Comment</button>
+                    <button type='submit' style={{marginTop:'10px'}}>Add a Comment</button>
                 </form>
             </div>:
             <div>Add a comment</div>} 

@@ -11,9 +11,10 @@ import EditPage from './views/EditPage';
 
 function App() {
   const [loggedUser, setLoggedUser] = useState();
+  const [category, setCategory] = useState();
 
   return (
-    <AppContext.Provider value={{ loggedUser, setLoggedUser }}>
+    <AppContext.Provider value={{ loggedUser, setLoggedUser, category, setCategory }}>
       <Routes>
         <Route path="/" element={<Main />} />
         <Route path="/recipes/:id" element={<DetailsPage />} />
