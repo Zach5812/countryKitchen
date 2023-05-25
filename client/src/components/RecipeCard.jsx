@@ -20,8 +20,11 @@ const RecipeCard = (props) => {
                         </Typography>
 
                         <Typography variant="body2">
-                            {props.recipe["description"]}
-
+                            {props.recipe["description"].length<40?
+                            <div>
+                            {props.recipe["description"]}</div>:
+                            <div>{props.recipe["description"].slice(0, 40) +"..."}</div>
+}
                         </Typography>
                     </CardContent>
                 </React.Fragment>
