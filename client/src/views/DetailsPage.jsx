@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { Link, useParams, useNavigate } from 'react-router-dom';
 
 import axios from 'axios';
-import { Card, Grid, Paper } from '@mui/material';
+import { Card, Paper } from '@mui/material';
 import Comments from '../components/Comments';
 
 const DetailsPage = () => {
@@ -68,10 +68,6 @@ const DetailsPage = () => {
                 </div>
                 <div id='jump'>
                     <button className="button" onClick={() => navigate(-1)}>Back</button>
-
-                    <button className="btn-scroll" onClick={handleClickScroll}>
-                        Comments
-                    </button>
                     <br />
                     <button className="btn-scroll" onClick={jumpRecipe}>
                         Recipe
@@ -79,6 +75,9 @@ const DetailsPage = () => {
                     <br />
                     <button className="btn-scroll" onClick={jumpStory}>
                         Story
+                    </button>
+                    <button className="btn-scroll" onClick={handleClickScroll}>
+                        Comments
                     </button>
                 </div>
                 <Paper id='Menu'>
