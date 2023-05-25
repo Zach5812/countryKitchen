@@ -8,4 +8,5 @@ module.exports = (app)=>{
     app.get("/api/recipes/comments/:id", RecipeController.addComment);
     app.patch("/api/recipes/:id", RecipeController.updateRecipe);
     app.delete("/api/recipes/:id", RecipeController.deleteRecipe);
+    // app.delete("/api/recipes/comments/:id", RecipeController.deleteComment);
 }

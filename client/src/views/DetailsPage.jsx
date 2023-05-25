@@ -5,6 +5,7 @@ import { Link, useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { Card, Paper } from '@mui/material';
 import Comments from '../components/Comments';
+import CatNav from '../components/CatNav';
 
 const DetailsPage = () => {
     const [recipe, setRecipe] = useState();
@@ -33,32 +34,31 @@ const DetailsPage = () => {
         navigate(`/recipes/edit/${id}`)
     }
 
-
     const addComment = (newComment) => {
         setComments([...comments, newComment])
     }
 
-    const handleClickScroll = () => {
-        const comment = document.getElementById('comments');
-        if (comment) {
-            // 👇 Will scroll smoothly to the top of the next section
-            comment.scrollIntoView({ behavior: 'smooth' });
-        }
-    };
-    const jumpRecipe = () => {
-        const top = document.getElementById('title');
-        if (top) {
-            // 👇 Will scroll smoothly to the top of the next section
-            top.scrollIntoView({ behavior: 'smooth' });
-        }
-    };
-    const jumpStory = () => {
-        const story = document.getElementById('story');
-        if (story) {
-            // 👇 Will scroll smoothly to the top of the next section
-            story.scrollIntoView({ behavior: 'smooth' });
-        }
-    };
+        const handleClickScroll = () => {
+            const comment = document.getElementById('comments');
+            if (comment) {
+                // 👇 Will scroll smoothly to the top of the next section
+                comment.scrollIntoView({ behavior: 'smooth' });
+            }
+        };
+        const jumpRecipe = () => {
+            const top = document.getElementById('title');
+            if (top) {
+                // 👇 Will scroll smoothly to the top of the next section
+                top.scrollIntoView({ behavior: 'smooth' });
+            }
+        };
+        const jumpStory = () => {
+            const story = document.getElementById('story');
+            if (story) {
+                // 👇 Will scroll smoothly to the top of the next section
+                story.scrollIntoView({ behavior: 'smooth' });
+            }
+        };
 
     return (
         <div className="Body">
@@ -81,9 +81,10 @@ const DetailsPage = () => {
                     </button>
                 </div>
                 <Paper id='Menu'>
+                    <button className="button" onClick={() => navigate(-1)} style={{ width: "fit-content", margin: "5px 0px 0px 10px" }}>Home</button>
                     <Paper id="recipeDetails">{recipe ?
                         <div>
-                            <div id="recipeTop" style={{ display: "flex", justifyContent: "space-between" }}>
+                            <div style={{ display: "flex", justifyContent: "space-between" }}>
                                 <div>
                                     <Card id="specs" elevation={8}>
                                         <h1 id='title'>{recipe.title}</h1>
@@ -111,6 +112,7 @@ const DetailsPage = () => {
                                 <div>
                                     <Card id="recImage" elevation={8}>
                                         <img src={recipe["image"]} alt={recipe.title} />
+                                        <button onClick={edit}>Edit Recipe Details</button>
                                     </Card>
                                 </div>
 
