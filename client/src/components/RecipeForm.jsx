@@ -3,22 +3,28 @@ import { useNavigate, useParams } from 'react-router-dom'
 import axios from 'axios'
 
 const RecipeForm = (props) => {
-    const { id } = useParams()
-
-    const navigate = useNavigate()
-
     const [title, setRecipeTitle] = useState("")
     const [category, setCategory] = useState("")
     const [description, setDescription] = useState("")
     const [ingredients, setIngredients] = useState([])
+    const [ingreName, setIngreName] = useState("")
+    const [ingreAmt, setIngreAmt] = useState("")
+    const [ingreMeasurement, setIngreMeasurement] = useState("")
     const [methods, setMethods] = useState([])
     const [story, setStory] = useState("")
+    const [image, setImage] = useState("")
     const [errors, setErrors] = useState([])
+
+    const { id } = useParams()
+
+    const navigate = useNavigate()
+
+
 
     const handleSubmit = (e) => {
         e.preventDefault();
         //send formdata to api
-        axios[props.post](`http://localhost:8000/api/recipes/${props?.recipeID}`, { title, category, description })
+        axios[props.post](`http://localhost:8000/api/recipes/${props?.recipeID}`, { title, category, description, ingredients, methods, story })
             .then(response => {
                 navigate(`/recipes/${response.data._id}`)
             })
@@ -41,8 +47,12 @@ const RecipeForm = (props) => {
                 setCategory(recipe.category)
                 setDescription(recipe.description)
                 setIngredients(recipe.ingredients)
+                // setIngreName(recipe.ingredients.name)
+                // setIngreAmt(recipe.ingredients.amount)
+                // setIngreMeasurement(recipe.ingredients.measurement)
                 setMethods(recipe.methods)
                 setStory(recipe.story)
+                setImage(recipe.image)
             })
             .catch(err => console.log(err))
     }, [id])
@@ -56,7 +66,13 @@ const RecipeForm = (props) => {
             </div>
             <div>
                 <label>Category </label>
-                <input type="text" name="category" value={category} onChange={e => setCategory(e.target.value)} />
+                <select name="category" value={category} onChange={e => setCategory(e.target.value)}>
+                    <option hidden> Please select a category</option>
+                    <option value="cookies"> Cookies</option>
+                    <option value="cakes"> Cakes</option>
+                    <option value="pies"> Pies</option>
+                    <option value="quicks"> Quick Breads</option>
+                </select>
             </div>
             <div>
                 <label>Description </label>
@@ -64,17 +80,39 @@ const RecipeForm = (props) => {
             </div>
             <div>
                 <label>Ingredients </label>
-                <input type="text" name="ingredients" value={ingredients} onChange={e => setIngredients(e.target.value)} />
+                {ingredients ? ingredients.map((eachIng, idx) => (
+                    // <li key={idx}>{eachIng.name}: {eachIng.amount} {eachIng.measurement}</li>
+                    // <h1>{eachIng.name}</h1>
+                    <div>
+                        <input type="text" value={eachIng.name} onChange={e => setIngreName(e.target.value)} />
+                        <input type="text" value={eachIng.amount} onChange={e => setIngreAmt(e.target.value)} />
+                        <input type="text" value={eachIng.measurement} onChange={e => setIngreMeasurement(e.target.value)} />
+                    </div>
+                )) :
+                    <div>
+                        <input type="text" value={ingreName} onChange={e => setIngreName(e.target.value)} />
+                        <input type="text" value={ingreAmt} onChange={e => setIngreAmt(e.target.value)} />
+                        <input type="text" value={ingreMeasurement} onChange={e => setIngreMeasurement(e.target.value)} />
+                    </div>}
             </div>
             <div>
                 <label>Methods </label>
-                {/* <input type="text" name="methods" value={methods} onChange={e => setMethods(e.target.value)} /> */}
-                <textarea name="methods" id="methods" value={methods} cols="30" rows="10"/>
+                {methods ? methods.map((eachMeth, idx) => (
+                    <div>
+                        {idx+1} <input type="text" value={eachMeth} onChange={e => setMethods(e.target.value)} />
+                        <br />
+                    </div>
+                )) :
+                    <input type="text" value={methods} onChange={e => setMethods(e.target.value)} />}
+                {/* <textarea name="methods" id="methods" value={methods} cols="30" rows="10" /> */}
             </div>
             <div>
                 <label>Story </label>
-                {/* <input type="text" name="story" value={story} onChange={e => setStory(e.target.value)} /> */}
-                <textarea name="story" id="story" value={story} cols="30" rows="10"/>
+                <textarea name="story" id="story" value={story} cols="30" rows="10" onChange={e => setStory(e.target.value)} />
+            </div>
+            <div>
+                <label>Image URL </label>
+                <input type="text" name="image" value={image} onChange={e => setImage(e.target.value)} />
             </div>
             <button type="submit">{props.submit}</button>
         </form>

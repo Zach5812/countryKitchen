@@ -5,12 +5,14 @@ import { Link, useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { Card, Paper } from '@mui/material';
 import Comments from '../components/Comments';
+import { useAppContext } from '../libs/context';
 import CatNav from '../components/CatNav';
 
 const DetailsPage = () => {
+    const { loggedUser, setLoggedUser } = useAppContext();
     const [recipe, setRecipe] = useState();
     const [comments, setComments] = useState([]);
-    const navigate = useNavigate
+    const navigate = useNavigate()
     const { id } = useParams();
 
     useEffect(() => {
@@ -30,21 +32,21 @@ const DetailsPage = () => {
             .catch(error => console.log(error))
     }, [])
 
+    useEffect(() => {
+        if (!loggedUser) {
+          axios.get("http://localhost:8000/api/auth", { withCredentials: true })
+            .then(res => setLoggedUser(res.data))
+            .catch(_ => navigate("/"));
+        }
+      }, [])
+
     const edit = () => {
         navigate(`/recipes/edit/${id}`)
-      }
-
-    const addComment =  (newComment) =>{
-        setComments([...comments, newComment])
     }
 
-
-    // const filterCat = (category) => {
-    //     const filteredList = (recipeList.filter((eachRecipe) => eachRecipe["category"] === category))
-    //     setFilteredList(filteredList)
-    //     console.log(category)
-    //     console.log(filteredList)
-    //   }
+    const addComment = (newComment) => {
+        setComments([...comments, newComment])
+    }
 
     return (
         <div className="Body">
@@ -81,7 +83,12 @@ const DetailsPage = () => {
                                 <div>
                                     <Card id="recImage" elevation={8}>
                                         <img src={recipe["image"]} alt={recipe.title} />
-                                        <button onClick={edit}>Edit Recipe Details</button>
+                                        {loggedUser?.username ?
+                                            <div className="adminOptions" >
+                                                <button onClick={edit}>Edit Recipe Details</button>
+                                            </div>
+                                            : null
+                                        }
                                     </Card>
                                 </div>
 
@@ -91,7 +98,7 @@ const DetailsPage = () => {
                                 <h3>Recipe History</h3>
                                 {recipe.story}
 
-                                <Comments addToDom={addComment} comments={comments} id ={id} />
+                                <Comments addToDom={addComment} comments={comments} id={id} />
                             </Card>
                         </div>
                         :
