@@ -23,6 +23,7 @@ const Comments = (props) => {
         }
     
 
+
     return (
         <div>
             {props.comments?
@@ -31,6 +32,7 @@ const Comments = (props) => {
                 {props.comments.map((eachComment, idx) => (
                     <div key={idx}>
                         <div style={{display: "flex"}}>
+
                     <p style={{fontWeight: "bold", marginBottom:'5px'}}>{eachComment.name}</p>
                     <p style={{alignSelf: "center",marginBottom:'5px'}}><ReadStarRating value={eachComment.rating}/></p>
                     </div>
