@@ -63,19 +63,23 @@ const DetailsPage = () => {
     return (
         <div className="Body">
             <Paper id='Mat'>
-            <div id='jump' style={{position: "fixed", top: "40px", right: "10px"}}>
-                <button className="btn-scroll" onClick={handleClickScroll}>
-                    Comments
-                </button>
-                <br />
-                <button className="btn-scroll" onClick={jumpRecipe}>
-                    Recipe
-                </button>
-                <br />
-                <button className="btn-scroll" onClick={jumpStory}>
-                    Story
-                </button>
-            </div>
+                <div className='adminOptions' style={{ alignSelf: 'flex-start', marginLeft: '20px' }}>
+                    <button onClick={edit}>Edit Recipe Details</button>
+                </div>
+                <div id='jump'>
+                    <button className="button" onClick={() => navigate(-1)}>Back</button>
+                    <br />
+                    <button className="btn-scroll" onClick={jumpRecipe}>
+                        Recipe
+                    </button>
+                    <br />
+                    <button className="btn-scroll" onClick={jumpStory}>
+                        Story
+                    </button>
+                    <button className="btn-scroll" onClick={handleClickScroll}>
+                        Comments
+                    </button>
+                </div>
                 <Paper id='Menu'>
                     <button className="button" onClick={() => navigate(-1)} style={{ width: "fit-content", margin: "5px 0px 0px 10px" }}>Home</button>
                     <Paper id="recipeDetails">{recipe ?
