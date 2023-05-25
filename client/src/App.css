@@ -173,6 +173,21 @@ html {
   justify-self:center;
 }
 
+#jump{
+  width: 80px;
+  padding: 5px;
+  background-color: orange;
+  border-radius: 3px;
+}
+
+#jump button{
+  width: 80px;
+  background-color: whitesmoke;
+  border: none;
+  border-radius: 7px 0px 0px 7px;
+}
+
+
 p{
   white-space: pre-wrap;
 }
