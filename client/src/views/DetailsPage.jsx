@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-
+import { useAppContext } from "../libs/context";
 import { Link, useParams, useNavigate } from 'react-router-dom';
 
 import axios from 'axios';
@@ -8,6 +8,7 @@ import Comments from '../components/Comments';
 import CatNav from '../components/CatNav';
 
 const DetailsPage = () => {
+    const { loggedUser, setLoggedUser } = useAppContext();
     const [recipe, setRecipe] = useState();
     const [comments, setComments] = useState([]);
     const navigate = useNavigate()
@@ -30,6 +31,14 @@ const DetailsPage = () => {
             .catch(error => console.log(error))
     }, [])
 
+    useEffect(() => {
+        if (!loggedUser) {
+            axios.get("http://localhost:8000/api/auth", { withCredentials: true })
+                .then(res => setLoggedUser(res.data))
+                .catch(_ => navigate(`/recipes/${id}`));
+        }
+    }, [])
+
     const edit = () => {
         navigate(`/recipes/edit/${id}`)
     }
@@ -38,36 +47,39 @@ const DetailsPage = () => {
         setComments([...comments, newComment])
     }
 
-        const handleClickScroll = () => {
-            const comment = document.getElementById('comments');
-            if (comment) {
-                // 👇 Will scroll smoothly to the top of the next section
-                comment.scrollIntoView({ behavior: 'smooth' });
-            }
-        };
-        const jumpRecipe = () => {
-            const top = document.getElementById('title');
-            if (top) {
-                // 👇 Will scroll smoothly to the top of the next section
-                top.scrollIntoView({ behavior: 'smooth' });
-            }
-        };
-        const jumpStory = () => {
-            const story = document.getElementById('story');
-            if (story) {
-                // 👇 Will scroll smoothly to the top of the next section
-                story.scrollIntoView({ behavior: 'smooth' });
-            }
-        };
+    const handleClickScroll = () => {
+        const comment = document.getElementById('comments');
+        if (comment) {
+            // 👇 Will scroll smoothly to the top of the next section
+            comment.scrollIntoView({ behavior: 'smooth' });
+        }
+    };
+    const jumpRecipe = () => {
+        const top = document.getElementById('title');
+        if (top) {
+            // 👇 Will scroll smoothly to the top of the next section
+            top.scrollIntoView({ behavior: 'smooth' });
+        }
+    };
+    const jumpStory = () => {
+        const story = document.getElementById('story');
+        if (story) {
+            // 👇 Will scroll smoothly to the top of the next section
+            story.scrollIntoView({ behavior: 'smooth' });
+        }
+    };
 
     return (
         <div className="Body">
             <Paper id='Mat'>
-                <div className='adminOptions' style={{ alignSelf: 'flex-start', marginLeft: '20px' }}>
-                    <button onClick={edit}>Edit Recipe Details</button>
-                </div>
+                {loggedUser?.username ?
+                    <div className='adminOptions' style={{ alignSelf: 'flex-start', marginLeft: '20px' }}>
+                        <button onClick={edit}>Edit Recipe Details</button>
+                    </div>
+                    : null
+                }
                 <div id='jump'>
-                    <button className="button" onClick={() => navigate(-1)}>Back</button>
+                    <button className="button" onClick={() => navigate("/")}>Home</button>
                     <br />
                     <button className="btn-scroll" onClick={jumpRecipe}>
                         Recipe
@@ -81,7 +93,6 @@ const DetailsPage = () => {
                     </button>
                 </div>
                 <Paper id='Menu'>
-                    <button className="button" onClick={() => navigate(-1)} style={{ width: "fit-content", margin: "5px 0px 0px 10px" }}>Home</button>
                     <Paper id="recipeDetails">{recipe ?
                         <div>
                             <div style={{ display: "flex", justifyContent: "space-between" }}>
@@ -112,7 +123,6 @@ const DetailsPage = () => {
                                 <div>
                                     <Card id="recImage" elevation={8}>
                                         <img src={recipe["image"]} alt={recipe.title} />
-                                        <button onClick={edit}>Edit Recipe Details</button>
                                     </Card>
                                 </div>
 
