@@ -1,6 +1,13 @@
 The Wartsbaugh Family Kitchen
 
-This project uses React, Express, Node JS, and Mongo DB. To initialize this project on your own, run 'npm install' in your terminal.
+This project uses React, Express, Node JS, and Mongo DB. 
+
+To initialize this project on your own, run 'npm install' in your terminal.
+Update the database info in the config and create a .env with the relevant info:
+(ATLAS_USERNAME=[your MongoDB Atlas username]
+ATLAS_PASSWORD=[your MongoDB Atlas password]
+DB_Name=[your database name]
+COOKIE_SECRET=[a single string that is at least 32 characters long])
 
 
 
