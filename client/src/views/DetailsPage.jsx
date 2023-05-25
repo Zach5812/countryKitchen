@@ -63,7 +63,12 @@ const DetailsPage = () => {
     return (
         <div className="Body">
             <Paper id='Mat'>
+                <div className='adminOptions' style={{alignSelf:'flex-start',marginLeft:'20px'}}>
+            <button onClick={edit}>Edit Recipe Details</button>
+            </div>
             <div id='jump' style={{position: "fixed", top: "40px", right: "10px"}}>
+            <button className="button" onClick={() => navigate(-1)}>Back</button>
+
                 <button className="btn-scroll" onClick={handleClickScroll}>
                     Comments
                 </button>
@@ -77,7 +82,6 @@ const DetailsPage = () => {
                 </button>
             </div>
                 <Paper id='Menu'>
-                    <button className="button" onClick={() => navigate(-1)} style={{ width: "fit-content", margin: "5px 0px 0px 10px" }}>Home</button>
                     <Paper id="recipeDetails">{recipe ?
                         <div>
                             <div style={{ display: "flex", justifyContent: "space-between" }}>
@@ -108,7 +112,6 @@ const DetailsPage = () => {
                                 <div>
                                     <Card id="recImage" elevation={8}>
                                         <img src={recipe["image"]} alt={recipe.title} />
-                                        <button onClick={edit}>Edit Recipe Details</button>
                                     </Card>
                                 </div>
 
