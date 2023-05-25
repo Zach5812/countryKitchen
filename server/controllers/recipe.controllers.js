@@ -1,4 +1,3 @@
-
 //Controllers (CRUD):
 const {Recipe, Comment} = require("../models/recipes.models")
 // all Recipes
@@ -38,25 +37,20 @@ module.exports.updateRecipe = (req, res)=>{
 
 module.exports.addComment = async(req, res) => {
     try{
-        console.log("Tried it")
         // add comment into Comment
         const newComment = new Comment(req.body)
         newComment.recipe = req.params.id
-        console.log("Tried it2")
         await newComment.save()
         // pushing the newly added comment into Recipe
         const foundRecipe = await Recipe.findOne({_id:req.params.id})
         foundRecipe.comments.push(newComment)
         await foundRecipe.save()
-        console.log("Tried it3")
         res.json(newComment)
     }catch(err){
         console.log("Error message")
         res.status(400).json(err)
     }
-
 }
-
 
 // delete Rec
 module.exports.deleteRecipe = (req, res)=>{
@@ -64,3 +58,18 @@ module.exports.deleteRecipe = (req, res)=>{
         .then(status=> res.json(status))
         .catch(err=>res.json(err))
 }
+
+// delete Comment
+// module.exports.deleteComment = (req, res)=>{
+//     Recipe.findOne({_id: req.params.id})
+//     Comment.findOne({_id: req.params.id})
+//     Recipe.updateMany({:"games"}, {$pull: {shops: 'gamestop'}})
+//     Comment.deleteOne({_id: req.params.id})
+//         .then(status=> res.json(status))
+//         .catch(err=>res.json(err))
+// }
+
+// 1. Get recipe from param
+// 2. Get commentId from param
+// 3. After getting recipe, pull the comment from recipe.comments
+// 4. After removing that comment from recipe, delete comment (by deleteOne?)

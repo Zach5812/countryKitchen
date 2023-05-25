@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { Link, useParams, useNavigate } from 'react-router-dom';
 
 import axios from 'axios';
-import { Card, Grid, Paper } from '@mui/material';
+import { Card, Paper } from '@mui/material';
 import Comments from '../components/Comments';
 
 import { useAppContext } from '../libs/context';
