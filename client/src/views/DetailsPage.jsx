@@ -38,53 +38,53 @@ const DetailsPage = () => {
         setComments([...comments, newComment])
     }
 
-        const handleClickScroll = () => {
-            const comment = document.getElementById('comments');
-            if (comment) {
-                // 👇 Will scroll smoothly to the top of the next section
-                comment.scrollIntoView({ behavior: 'smooth' });
-            }
-        };
-        const jumpRecipe = () => {
-            const top = document.getElementById('title');
-            if (top) {
-                // 👇 Will scroll smoothly to the top of the next section
-                top.scrollIntoView({ behavior: 'smooth' });
-            }
-        };
-        const jumpStory = () => {
-            const story = document.getElementById('story');
-            if (story) {
-                // 👇 Will scroll smoothly to the top of the next section
-                story.scrollIntoView({ behavior: 'smooth' });
-            }
-        };
+    const handleClickScroll = () => {
+        const comment = document.getElementById('comments');
+        if (comment) {
+            // 👇 Will scroll smoothly to the top of the next section
+            comment.scrollIntoView({ behavior: 'smooth' });
+        }
+    };
+    const jumpRecipe = () => {
+        const top = document.getElementById('title');
+        if (top) {
+            // 👇 Will scroll smoothly to the top of the next section
+            top.scrollIntoView({ behavior: 'smooth' });
+        }
+    };
+    const jumpStory = () => {
+        const story = document.getElementById('story');
+        if (story) {
+            // 👇 Will scroll smoothly to the top of the next section
+            story.scrollIntoView({ behavior: 'smooth' });
+        }
+    };
 
     return (
         <div className="Body">
             <Paper id='Mat'>
-                <div className='adminOptions' style={{alignSelf:'flex-start',marginLeft:'20px'}}>
-            <button onClick={edit}>Edit Recipe Details</button>
-            </div>
-            <div id='jump' style={{position: "fixed", top: "40px", right: "10px"}}>
-            <button className="button" onClick={() => navigate(-1)}>Back</button>
+                <div className='adminOptions' style={{ alignSelf: 'flex-start', marginLeft: '20px' }}>
+                    <button onClick={edit}>Edit Recipe Details</button>
+                </div>
+                <div id='jump'>
+                    <button className="button" onClick={() => navigate(-1)}>Back</button>
 
-                <button className="btn-scroll" onClick={handleClickScroll}>
-                    Comments
-                </button>
-                <br />
-                <button className="btn-scroll" onClick={jumpRecipe}>
-                    Recipe
-                </button>
-                <br />
-                <button className="btn-scroll" onClick={jumpStory}>
-                    Story
-                </button>
-            </div>
+                    <button className="btn-scroll" onClick={handleClickScroll}>
+                        Comments
+                    </button>
+                    <br />
+                    <button className="btn-scroll" onClick={jumpRecipe}>
+                        Recipe
+                    </button>
+                    <br />
+                    <button className="btn-scroll" onClick={jumpStory}>
+                        Story
+                    </button>
+                </div>
                 <Paper id='Menu'>
                     <Paper id="recipeDetails">{recipe ?
                         <div>
-                            <div style={{ display: "flex", justifyContent: "space-between" }}>
+                            <div id="recipeTop" style={{ display: "flex", justifyContent: "space-between" }}>
                                 <div>
                                     <Card id="specs" elevation={8}>
                                         <h1 id='title'>{recipe.title}</h1>

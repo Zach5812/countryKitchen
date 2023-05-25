@@ -12,6 +12,48 @@ html {
 @import "@fontsource/roboto/500.css";
 @import "@fontsource/roboto/700.css";
 
+@media only screen and (max-width:625px) {
+  #navbar #navOption {
+    height: 50px;
+    width: 80px;
+    margin-top: 5px;
+    font-size: small;
+    font-weight: bold;
+    justify-content: center;
+  }
+
+  #navbar img {
+    display: none
+  }
+
+  #recipeCat #RecipeCard {
+    width: 310px;
+    height: fit-content;
+    max-width: 310px;
+  }
+
+  #recipeCat #RecipeCard img {
+    width: 100px;
+    height: 100px;
+    align-self: right;
+  }
+
+  #Mat #jump{
+    top:0;
+    right:0;
+    border-radius: 3px 0px 0px 3px;
+  }
+
+  #Menu #recipeTop{
+    flex-direction:column;
+  }
+
+  #recipeTop #recImage{
+    width:fit-content;
+    align-self:center;
+  }
+}
+
 .App {
   text-align: center;
 }
@@ -62,11 +104,12 @@ html {
 #Mat {
   width: 90%;
   min-height: 500px;
+  max-width:950px;
   margin: 30px 0px;
-  padding: 30px 0px;
+  padding: 30px 10px;
   background-color: aliceblue;
   display: flex;
-  flex-direction:column;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
@@ -74,9 +117,9 @@ html {
 #Menu {
   width: 95%;
   min-height: 100%;
+  padding: 10px;
   display: flex;
   flex-direction: column;
-  /* justify-content: space-between; */
   background-color: rgb(28, 148, 124)
 }
 
@@ -84,7 +127,7 @@ html {
   height: fit-content;
   padding: 10px;
   display: flex;
-  flex-wrap:wrap;
+  flex-wrap: wrap;
   justify-content: space-evenly;
   text-align: center;
 }
@@ -102,6 +145,7 @@ html {
   height: 125px;
   padding-bottom: 5px;
   font-style: oblique;
+  font-weight:600;
   background-color: orange;
   display: flex;
   flex-direction: column;
@@ -118,7 +162,7 @@ html {
 }
 
 #RecipeCard {
-  height:300px;
+  height: 300px;
   margin: 5px;
   background-color: orange;
   /* border: solid aliceblue 1px; */
@@ -133,7 +177,8 @@ html {
 }
 
 #welcome {
-  justify-self:top;
+  padding-top:40px;
+  justify-self: top;
   text-align: center;
   height: 100%;
   color: aliceblue
@@ -165,22 +210,25 @@ html {
   width: 300px;
 }
 
-.adminOptions{
-  padding:5px;
-  margin-right:25px;
-  width:fit-content;
-  align-self:flex-end;
-  justify-self:center;
+.adminOptions {
+  padding: 5px;
+  margin-right: 25px;
+  width: fit-content;
+  align-self: flex-end;
+  justify-self: center;
 }
 
-#jump{
+#jump {
   width: 80px;
   padding: 5px;
   background-color: orange;
   border-radius: 3px;
+  position:fixed;
+  top:40px;
+  right:10px;
 }
 
-#jump button{
+#jump button {
   width: 80px;
   background-color: whitesmoke;
   border: none;
@@ -188,6 +236,6 @@ html {
 }
 
 
-p{
+p {
   white-space: pre-wrap;
 }
