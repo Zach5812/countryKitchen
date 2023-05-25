@@ -172,6 +172,7 @@ html {
   height: 150px;
   width: 150px;
   background-color: aliceblue;
+  margin-left:5px;
   padding: 4px;
   border-radius: 3px
 }
