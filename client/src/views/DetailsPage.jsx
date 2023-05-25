@@ -5,12 +5,9 @@ import { Link, useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { Card, Paper } from '@mui/material';
 import Comments from '../components/Comments';
-
-import { useAppContext } from '../libs/context';
-
+import CatNav from '../components/CatNav';
 
 const DetailsPage = () => {
-    const { loggedUser, setLoggedUser } = useAppContext();
     const [recipe, setRecipe] = useState();
     const [comments, setComments] = useState([]);
     const navigate = useNavigate()
@@ -33,14 +30,6 @@ const DetailsPage = () => {
             .catch(error => console.log(error))
     }, [])
 
-    useEffect(() => {
-        if (!loggedUser) {
-          axios.get("http://localhost:8000/api/auth", { withCredentials: true })
-            .then(res => setLoggedUser(res.data))
-            .catch(_ => navigate("/"));
-        }
-      }, [])
-
     const edit = () => {
         navigate(`/recipes/edit/${id}`)
     }
@@ -49,53 +38,49 @@ const DetailsPage = () => {
         setComments([...comments, newComment])
     }
 
-    const handleClickScroll = () => {
-        const comment = document.getElementById('comments');
-        if (comment) {
-            // 👇 Will scroll smoothly to the top of the next section
-            comment.scrollIntoView({ behavior: 'smooth' });
-        }
-    };
-    const jumpRecipe = () => {
-        const top = document.getElementById('title');
-        if (top) {
-            // 👇 Will scroll smoothly to the top of the next section
-            top.scrollIntoView({ behavior: 'smooth' });
-        }
-    };
-    const jumpStory = () => {
-        const story = document.getElementById('story');
-        if (story) {
-            // 👇 Will scroll smoothly to the top of the next section
-            story.scrollIntoView({ behavior: 'smooth' });
-        }
-    };
+        const handleClickScroll = () => {
+            const comment = document.getElementById('comments');
+            if (comment) {
+                // 👇 Will scroll smoothly to the top of the next section
+                comment.scrollIntoView({ behavior: 'smooth' });
+            }
+        };
+        const jumpRecipe = () => {
+            const top = document.getElementById('title');
+            if (top) {
+                // 👇 Will scroll smoothly to the top of the next section
+                top.scrollIntoView({ behavior: 'smooth' });
+            }
+        };
+        const jumpStory = () => {
+            const story = document.getElementById('story');
+            if (story) {
+                // 👇 Will scroll smoothly to the top of the next section
+                story.scrollIntoView({ behavior: 'smooth' });
+            }
+        };
 
     return (
         <div className="Body">
             <Paper id='Mat'>
-                <div className='adminOptions' style={{ alignSelf: 'flex-start', marginLeft: '20px' }}>
-                    <button onClick={edit}>Edit Recipe Details</button>
-                </div>
-                <div id='jump'>
-                    <button className="button" onClick={() => navigate(-1)}>Back</button>
-
-                    <button className="btn-scroll" onClick={handleClickScroll}>
-                        Comments
-                    </button>
-                    <br />
-                    <button className="btn-scroll" onClick={jumpRecipe}>
-                        Recipe
-                    </button>
-                    <br />
-                    <button className="btn-scroll" onClick={jumpStory}>
-                        Story
-                    </button>
-                </div>
+            <div id='jump' style={{position: "fixed", top: "40px", right: "10px"}}>
+                <button className="btn-scroll" onClick={handleClickScroll}>
+                    Comments
+                </button>
+                <br />
+                <button className="btn-scroll" onClick={jumpRecipe}>
+                    Recipe
+                </button>
+                <br />
+                <button className="btn-scroll" onClick={jumpStory}>
+                    Story
+                </button>
+            </div>
                 <Paper id='Menu'>
+                    <button className="button" onClick={() => navigate(-1)} style={{ width: "fit-content", margin: "5px 0px 0px 10px" }}>Home</button>
                     <Paper id="recipeDetails">{recipe ?
                         <div>
-                            <div id="recipeTop" style={{ display: "flex", justifyContent: "space-between" }}>
+                            <div style={{ display: "flex", justifyContent: "space-between" }}>
                                 <div>
                                     <Card id="specs" elevation={8}>
                                         <h1 id='title'>{recipe.title}</h1>
@@ -123,15 +108,10 @@ const DetailsPage = () => {
                                 <div>
                                     <Card id="recImage" elevation={8}>
                                         <img src={recipe["image"]} alt={recipe.title} />
-                                        {loggedUser?.username ?
-                                            <div className="adminOptions" >
-                                                <button onClick={edit}>Edit Recipe Details</button>
-                                            </div>
-                                            : null
-                                        }
-
+                                        <button onClick={edit}>Edit Recipe Details</button>
                                     </Card>
                                 </div>
+
                             </div>
                             <br />
                             <Card id="specs" elevation={8}>
