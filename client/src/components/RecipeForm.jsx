@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { Card, Paper } from '@mui/material'
 import { useNavigate, useParams } from 'react-router-dom'
 import axios from 'axios'
 
@@ -91,6 +92,8 @@ const RecipeForm = (props) => {
     }, [id])
 
     return (
+        <div className="Body">
+            <Paper id="Mat" elevation={10}>
         <form onSubmit={handleSubmit}>
             {errors.map((err, index) => <p key={index}>{err}</p>)}
             <div>
@@ -147,6 +150,8 @@ const RecipeForm = (props) => {
             </div>
             <button type="submit">{props.submit}</button>
         </form>
+        </Paper>
+        </div>
     )
 }
 
