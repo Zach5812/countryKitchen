@@ -94,7 +94,8 @@ const RecipeForm = (props) => {
     return (
         <div className="Body">
             <Paper id="Mat" elevation={10}>
-        <form onSubmit={handleSubmit}>
+                <Paper id="Menu">
+        <form onSubmit={handleSubmit} style={{backgroundColor:'whitesmoke'}}>
             {errors.map((err, index) => <p key={index}>{err}</p>)}
             <div>
                 <label>Recipe Title </label>
@@ -150,6 +151,7 @@ const RecipeForm = (props) => {
             </div>
             <button type="submit">{props.submit}</button>
         </form>
+        </Paper>
         </Paper>
         </div>
     )
