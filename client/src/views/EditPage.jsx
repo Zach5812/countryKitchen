@@ -6,7 +6,7 @@ const EditPage = () => {
     const { id } = useParams()
     return (
         <div>
-            <h2>Edit this recipe!</h2>
+            <h2 style={{textAlign: "center"}}>Edit this recipe!</h2>
             <RecipeForm submit={"Edit Recipe"} recipeID={id} post={"patch"} />
         </div>
     )
