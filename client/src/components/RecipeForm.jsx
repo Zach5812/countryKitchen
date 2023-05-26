@@ -7,9 +7,11 @@ const RecipeForm = (props) => {
     const [category, setCategory] = useState("")
     const [description, setDescription] = useState("")
     const [ingredients, setIngredients] = useState([])
+
     const [ingreName, setIngreName] = useState("")
     const [ingreAmt, setIngreAmt] = useState("")
     const [ingreMeasurement, setIngreMeasurement] = useState("")
+
     const [methods, setMethods] = useState([])
     const [story, setStory] = useState("")
     const [image, setImage] = useState("")
@@ -38,6 +40,37 @@ const RecipeForm = (props) => {
                 setErrors(errorArr)
             })
     }
+
+    const handleIngredients = (e, idx) => {
+        const copyIngre = [...ingredients]
+        copyIngre[idx][e.target.name] = e.target.value
+        setIngredients(copyIngre)
+    }
+
+    const handleMethods = (e, idx) => {
+        const copyMethods = [...methods]
+        copyMethods[idx] = e.target.value
+        setMethods(copyMethods)
+    }
+
+    // // This variable will be used to reference the button to add html rows to our html
+    // const addMethodsRowButton = document.getElementById("add_methods_row");
+
+    // // this variable references the div with ingredients_container in it
+    // const methodsContainer = document.getElementById("methods_container");
+
+    // addMethodsRowButton.addEventListener("click", () => {
+
+    //     // We are defining our actual row we want to input in
+    //     const methodsRowHtml = `
+    //     <div class="ingredients_row">
+    //   <input type="text" name="ingredients" class="ingredients_input">
+    //   <button type="button" class="remove_ingredients_row">X</button>
+    // </div>`;
+    //     // This searches our document for the ingredients container and inserts a row on click we use insertAdjacentHTML, giving it a position.
+    //     // The string we gave it is our html variable we defined.  Before end places the the html as the last row
+    //     methodsContainer.insertAdjacentHTML('beforeend', methodsRowHtml);
+    // });
 
     useEffect(() => {
         axios.get(`http://localhost:8000/api/recipes/${id}`)
@@ -78,33 +111,31 @@ const RecipeForm = (props) => {
                 <label>Description </label>
                 <input type="text" name="description" value={description} onChange={e => setDescription(e.target.value)} />
             </div>
-            <div>
+            <div id="methods_container">
                 <label>Ingredients </label>
                 {ingredients ? ingredients.map((eachIng, idx) => (
-                    // <li key={idx}>{eachIng.name}: {eachIng.amount} {eachIng.measurement}</li>
-                    // <h1>{eachIng.name}</h1>
                     <div>
-                        <input type="text" value={eachIng.name} onChange={e => setIngreName(e.target.value)} />
-                        <input type="text" value={eachIng.amount} onChange={e => setIngreAmt(e.target.value)} />
-                        <input type="text" value={eachIng.measurement} onChange={e => setIngreMeasurement(e.target.value)} />
+                        <input type="text" name="name" value={eachIng.name} onChange={e => handleIngredients(e, idx)} />
+                        <input type="text" name="amount" value={eachIng.amount} onChange={e => handleIngredients(e, idx)} />
+                        <input type="text" name="measurement" value={eachIng.measurement} onChange={e => handleIngredients(e, idx)} />
                     </div>
                 )) :
                     <div>
-                        <input type="text" value={ingreName} onChange={e => setIngreName(e.target.value)} />
-                        <input type="text" value={ingreAmt} onChange={e => setIngreAmt(e.target.value)} />
-                        <input type="text" value={ingreMeasurement} onChange={e => setIngreMeasurement(e.target.value)} />
+                        <input type="text" name="name" value={ingreName} onChange={e => handleIngredients(e)} />
+                        <input type="text" name="amount" value={ingreAmt} onChange={e => handleIngredients(e)} />
+                        <input type="text" name="measurement" value={ingreMeasurement} onChange={e => handleIngredients(e)} />
                     </div>}
             </div>
             <div>
                 <label>Methods </label>
                 {methods ? methods.map((eachMeth, idx) => (
                     <div>
-                        {idx+1} <input type="text" value={eachMeth} onChange={e => setMethods(e.target.value)} />
+                        {idx + 1} <input type="text" value={eachMeth} onChange={e => handleMethods(e, idx)} />
                         <br />
                     </div>
                 )) :
                     <input type="text" value={methods} onChange={e => setMethods(e.target.value)} />}
-                {/* <textarea name="methods" id="methods" value={methods} cols="30" rows="10" /> */}
+                {/* <button type="button" id="add_methods_row">+</button> */}
             </div>
             <div>
                 <label>Story </label>

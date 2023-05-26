@@ -95,7 +95,7 @@ const DetailsPage = () => {
                 <Paper id='Menu'>
                     <Paper id="recipeDetails">{recipe ?
                         <div>
-                            <div style={{ display: "flex", justifyContent: "space-between" }}>
+                            <div id="recipeTop" style={{ display: "flex", justifyContent: "space-between" }}>
                                 <div>
                                     <Card id="specs" elevation={8}>
                                         <h1 id='title'>{recipe.title}</h1>
