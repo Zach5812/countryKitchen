@@ -10,7 +10,7 @@ const RecipeForm = (props) => {
     const [ingredients, setIngredients] = useState([])
 
     const [ingreName, setIngreName] = useState("")
-    const [ingreAmt, setIngreAmt] = useState("")
+    const [ingreAmt, setIngreAmt] = useState(0)
     const [ingreMeasurement, setIngreMeasurement] = useState("")
 
     const [methods, setMethods] = useState([])
@@ -94,7 +94,8 @@ const RecipeForm = (props) => {
     return (
         <div className="Body">
             <Paper id="Mat" elevation={10}>
-        <form onSubmit={handleSubmit}>
+                <Paper id="Menu">
+        <form onSubmit={handleSubmit} style={{backgroundColor:'whitesmoke'}}>
             {errors.map((err, index) => <p key={index}>{err}</p>)}
             <div>
                 <label>Recipe Title </label>
@@ -119,14 +120,14 @@ const RecipeForm = (props) => {
                 {ingredients ? ingredients.map((eachIng, idx) => (
                     <div>
                         <input type="text" name="name" value={eachIng.name} onChange={e => handleIngredients(e, idx)} />
-                        <input type="text" name="amount" value={eachIng.amount} onChange={e => handleIngredients(e, idx)} />
+                        <input type="number" name="amount" value={eachIng.amount} onChange={e => handleIngredients(e, idx)} />
                         <input type="text" name="measurement" value={eachIng.measurement} onChange={e => handleIngredients(e, idx)} />
                     </div>
                 )) :
                     <div>
-                        <input type="text" name="name" value={ingreName} onChange={e => handleIngredients(e)} />
-                        <input type="text" name="amount" value={ingreAmt} onChange={e => handleIngredients(e)} />
-                        <input type="text" name="measurement" value={ingreMeasurement} onChange={e => handleIngredients(e)} />
+                        <input type="text" name="name" value={ingreName} onChange={e => handleIngredients(e)} placeholder="ingredient"/>
+                        <input type="number" name="amount" value={ingreAmt} onChange={e => handleIngredients(e)} />
+                        <input type="text" name="measurement" value={ingreMeasurement} onChange={e => handleIngredients(e)} placeholder="measurement"/>
                     </div>}
             </div>
             <div>
@@ -150,6 +151,7 @@ const RecipeForm = (props) => {
             </div>
             <button type="submit">{props.submit}</button>
         </form>
+        </Paper>
         </Paper>
         </div>
     )
