@@ -130,7 +130,7 @@ const DetailsPage = () => {
                             <br />
                             <Card id="specs" elevation={8}>
                                 <h3 id='story'>Recipe History</h3>
-                                {recipe.story}
+                                <p>{recipe.story}</p>
                                 <div id='comments'>
                                     <Comments addToDom={addComment} comments={comments} id={id} />
                                 </div>

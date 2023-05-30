@@ -6,6 +6,10 @@ html {
     linear-gradient(90deg, rgba(32, 100, 210, .5) 0 35%, transparent 36% 96%, rgba(32, 100, 210, .5) 97% 100%);
 }
 
+*{
+  font-family:roboto
+}
+
 @import url("https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap");
 @import "@fontsource/roboto/300.css";
 @import "@fontsource/roboto/400.css";
@@ -108,7 +112,7 @@ html {
   max-width:950px;
   margin: 30px 0px;
   padding: 30px 10px;
-  background-color: aliceblue;
+  background-color: rgb(28, 148, 124);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -121,7 +125,7 @@ html {
   padding: 10px;
   display: flex;
   flex-direction: column;
-  background-color: rgb(28, 148, 124)
+  background-color: rgba(245, 245, 245, 0.607)
 }
 
 #navbar {
@@ -136,8 +140,9 @@ html {
 #navbar img {
   height: 70px;
   max-width: 90%;
-  padding: 3px;
-  border-radius: 3px;
+  margin-bottom:2px;
+  padding: 2px;
+  border-radius: 8px;
   background-color: aliceblue;
 }
 
@@ -146,13 +151,20 @@ html {
   height: 125px;
   padding-bottom: 5px;
   font-style: oblique;
-  font-weight:600;
+  font-weight:500;
   background-color: orange;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  color: aliceblue
+  color: black;
+  border:solid aliceblue 2px;
+}
+
+#navOption span{
+  margin-top:4px;
+  height:38.4px;
+  justify-items:center;
 }
 
 #recipeCat {
@@ -179,11 +191,18 @@ html {
 }
 
 #welcome {
+  font-family:roboto;
+  /* font-style:oblique; */
   padding-top:40px;
   justify-self: top;
   text-align: center;
   height: 100%;
-  color: aliceblue
+  color: black;
+  /* background-color:aliceblue */
+}
+
+#welcome h1, h3{
+  /* background-color:aliceblue */
 }
 
 #recipeDetails {
